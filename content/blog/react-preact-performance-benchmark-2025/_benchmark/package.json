@@ -1,0 +1,17 @@
+{
+  "name": "react-preact",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "benchmark": "node benchmark.js",
+    "benchmark:size": "./size/benchmark.sh"
+  },
+  "dependencies": {
+    "benchmark": "^2.1.4",
+    "preact": "^10.26.4",
+    "preact-render-to-string": "^6.5.13",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
