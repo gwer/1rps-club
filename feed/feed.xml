@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="pretty-atom-feed.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title>1RPS.club</title>
+  <subtitle>1RPS.club</subtitle>
+  <link href="https://1rps.club/eleventy-base-blog/feed/feed.xml" rel="self" />
+  <link href="https://1rps.club/eleventy-base-blog/" />
+  <updated>2025-07-12T00:00:00Z</updated>
+  <id>https://1rps.club/eleventy-base-blog/</id>
+  <author>
+    <name>gwer</name>
+  </author>
+  <entry>
+    <title>Preact vs React 2025: 20x Faster Server Performance, 22x Smaller Bundle</title>
+    <link href="https://1rps.club/eleventy-base-blog/blog/react-preact-performance-benchmark-2025/" />
+    <updated>2025-07-12T00:00:00Z</updated>
+    <id>https://1rps.club/eleventy-base-blog/blog/react-preact-performance-benchmark-2025/</id>
+    <content type="html">&lt;h2 id=&quot;server-side-rendering-speed-react-vs-preact&quot;&gt;Server-Side Rendering Speed: React vs Preact&lt;/h2&gt;
+&lt;p&gt;React is a popular library for building user interfaces. You can love it or hate it, but it has already claimed its place and is here to stay. While it may be great for complex SPAs, it can also be quite useful as a modular templating engine, allowing you to add interactivity to websites when needed.&lt;/p&gt;
+&lt;p&gt;But how efficient is it? To find out, let&#39;s compare it with Preact — the closest analog that can, with some reservations, be considered a drop-in replacement for React.&lt;/p&gt;
+&lt;p&gt;The first thing I want to examine is rendering speed. To be precise, this is the speed of transforming our JS code into an HTML string to serve to the client. This characteristic helps determine how much money you&#39;ll need to spend on servers or how much traffic a single server can handle.&lt;/p&gt;
+&lt;h3 id=&quot;performance-benchmarks&quot;&gt;Performance Benchmarks&lt;/h3&gt;
+&lt;div class=&quot;benchmark&quot;&gt;&lt;h4 id=&quot;render-simple-component-ops-sec&quot;&gt;Render simple component (ops/sec)&lt;/h4&gt;
+				&lt;div class=&quot;benchmark__row&quot;&gt;
+					&lt;span class=&quot;benchmark__library-name&quot;&gt;React&lt;/span&gt;
+					&lt;div class=&quot;benchmark__progress-container&quot;&gt;
+						&lt;div class=&quot;benchmark__progress-bar&quot; style=&quot;--width: 4.8520887878937575%&quot;&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+					&lt;span class=&quot;benchmark__value-display&quot;&gt;70,719&lt;/span&gt;
+				&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;&lt;div class=&quot;benchmark__row&quot;&gt;
+&lt;span class=&quot;benchmark__library-name&quot;&gt;Preact&lt;/span&gt;
+&lt;div class=&quot;benchmark__progress-container&quot;&gt;
+&lt;div class=&quot;benchmark__progress-bar&quot; style=&quot;--width: 100%&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;span class=&quot;benchmark__value-display&quot;&gt;1,457,496&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
+&lt;div class=&quot;benchmark&quot;&gt;&lt;h4 id=&quot;render-small-list-10-items-ops-sec&quot;&gt;Render small list (10 items) (ops/sec)&lt;/h4&gt;
+				&lt;div class=&quot;benchmark__row&quot;&gt;
+					&lt;span class=&quot;benchmark__library-name&quot;&gt;React&lt;/span&gt;
+					&lt;div class=&quot;benchmark__progress-container&quot;&gt;
+						&lt;div class=&quot;benchmark__progress-bar&quot; style=&quot;--width: 4.870567265642811%&quot;&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+					&lt;span class=&quot;benchmark__value-display&quot;&gt;2,350&lt;/span&gt;
+				&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;&lt;div class=&quot;benchmark__row&quot;&gt;
+&lt;span class=&quot;benchmark__library-name&quot;&gt;Preact&lt;/span&gt;
+&lt;div class=&quot;benchmark__progress-container&quot;&gt;
+&lt;div class=&quot;benchmark__progress-bar&quot; style=&quot;--width: 100%&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;span class=&quot;benchmark__value-display&quot;&gt;48,249&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
+&lt;div class=&quot;benchmark&quot;&gt;&lt;h4 id=&quot;render-medium-list-100-items-ops-sec&quot;&gt;Render medium list (100 items) (ops/sec)&lt;/h4&gt;
+				&lt;div class=&quot;benchmark__row&quot;&gt;
+					&lt;span class=&quot;benchmark__library-name&quot;&gt;React&lt;/span&gt;
+					&lt;div class=&quot;benchmark__progress-container&quot;&gt;
+						&lt;div class=&quot;benchmark__progress-bar&quot; style=&quot;--width: 4.519096180763847%&quot;&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+					&lt;span class=&quot;benchmark__value-display&quot;&gt;226&lt;/span&gt;
+				&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;&lt;div class=&quot;benchmark__row&quot;&gt;
+&lt;span class=&quot;benchmark__library-name&quot;&gt;Preact&lt;/span&gt;
+&lt;div class=&quot;benchmark__progress-container&quot;&gt;
+&lt;div class=&quot;benchmark__progress-bar&quot; style=&quot;--width: 100%&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;span class=&quot;benchmark__value-display&quot;&gt;5,001&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
+&lt;div class=&quot;benchmark&quot;&gt;&lt;h4 id=&quot;render-large-list-1000-items-ops-sec&quot;&gt;Render large list (1000 items) (ops/sec)&lt;/h4&gt;
+				&lt;div class=&quot;benchmark__row&quot;&gt;
+					&lt;span class=&quot;benchmark__library-name&quot;&gt;React&lt;/span&gt;
+					&lt;div class=&quot;benchmark__progress-container&quot;&gt;
+						&lt;div class=&quot;benchmark__progress-bar&quot; style=&quot;--width: 7.20391061452514%&quot;&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+					&lt;span class=&quot;benchmark__value-display&quot;&gt;25.79&lt;/span&gt;
+				&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;&lt;div class=&quot;benchmark__row&quot;&gt;
+&lt;span class=&quot;benchmark__library-name&quot;&gt;Preact&lt;/span&gt;
+&lt;div class=&quot;benchmark__progress-container&quot;&gt;
+&lt;div class=&quot;benchmark__progress-bar&quot; style=&quot;--width: 100%&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;span class=&quot;benchmark__value-display&quot;&gt;358&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
+&lt;div class=&quot;benchmark&quot;&gt;&lt;h4 id=&quot;render-nested-components-ops-sec&quot;&gt;Render nested components (ops/sec)&lt;/h4&gt;
+				&lt;div class=&quot;benchmark__row&quot;&gt;
+					&lt;span class=&quot;benchmark__library-name&quot;&gt;React&lt;/span&gt;
+					&lt;div class=&quot;benchmark__progress-container&quot;&gt;
+						&lt;div class=&quot;benchmark__progress-bar&quot; style=&quot;--width: 4.780317547221462%&quot;&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+					&lt;span class=&quot;benchmark__value-display&quot;&gt;1,397&lt;/span&gt;
+				&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;&lt;div class=&quot;benchmark__row&quot;&gt;
+&lt;span class=&quot;benchmark__library-name&quot;&gt;Preact&lt;/span&gt;
+&lt;div class=&quot;benchmark__progress-container&quot;&gt;
+&lt;div class=&quot;benchmark__progress-bar&quot; style=&quot;--width: 100%&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;span class=&quot;benchmark__value-display&quot;&gt;29,224&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
+&lt;h3 id=&quot;performance-analysis&quot;&gt;Performance Analysis&lt;/h3&gt;
+&lt;p&gt;Preact consistently outperforms React across all test scenarios, with most cases showing 20x+ improvements.&lt;/p&gt;
+&lt;p&gt;For server costs, this translates directly to bottom-line impact. With 20x better performance, you can either serve 20x more users on the same hardware, or reduce your server costs by 95% while maintaining the same capacity. Of course, this calculation assumes your server&#39;s primary workload is HTML generation.&lt;/p&gt;
+&lt;h2 id=&quot;bundle-size-the-client-side-story&quot;&gt;Bundle Size: The Client-Side Story&lt;/h2&gt;
+&lt;p&gt;Now, suppose we want to not just serve HTML, but also add some interactivity to the page. The advantage of React (and Preact too) is that interactivity can be added directly within components using hooks. But for this to work, you need to build a client bundle, serve it to the browser, and perform hydration. Without this procedure, you&#39;d have just plain HTML (which is often perfectly sufficient).&lt;/p&gt;
+&lt;p&gt;Therefore, it&#39;s worth building both libraries into bundles and measuring their sizes. The measurement shows the amount of JS code that needs to be transferred to the browser, parsed, and executed. This affects both the traffic between client and server, and how quickly all that interactivity becomes available to the user.&lt;/p&gt;
+&lt;h3 id=&quot;bundle-size-benchmarks&quot;&gt;Bundle Size Benchmarks&lt;/h3&gt;
+&lt;div class=&quot;benchmark&quot;&gt;&lt;h4 id=&quot;bundle-size-kb&quot;&gt;Bundle size (KB)&lt;/h4&gt;
+				&lt;div class=&quot;benchmark__row&quot;&gt;
+					&lt;span class=&quot;benchmark__library-name&quot;&gt;React&lt;/span&gt;
+					&lt;div class=&quot;benchmark__progress-container&quot;&gt;
+						&lt;div class=&quot;benchmark__progress-bar&quot; style=&quot;--width: 100%&quot;&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+					&lt;span class=&quot;benchmark__value-display&quot;&gt;348.38&lt;/span&gt;
+				&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;&lt;div class=&quot;benchmark__row&quot;&gt;
+&lt;span class=&quot;benchmark__library-name&quot;&gt;Preact&lt;/span&gt;
+&lt;div class=&quot;benchmark__progress-container&quot;&gt;
+&lt;div class=&quot;benchmark__progress-bar&quot; style=&quot;--width: 3.142057523393995%&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;span class=&quot;benchmark__value-display&quot;&gt;10.946&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
+&lt;div class=&quot;benchmark&quot;&gt;&lt;h4 id=&quot;bundle-size-gzip-kb&quot;&gt;Bundle size (gzip) (KB)&lt;/h4&gt;
+				&lt;div class=&quot;benchmark__row&quot;&gt;
+					&lt;span class=&quot;benchmark__library-name&quot;&gt;React&lt;/span&gt;
+					&lt;div class=&quot;benchmark__progress-container&quot;&gt;
+						&lt;div class=&quot;benchmark__progress-bar&quot; style=&quot;--width: 100%&quot;&gt;
+						&lt;/div&gt;
+					&lt;/div&gt;
+					&lt;span class=&quot;benchmark__value-display&quot;&gt;105.23&lt;/span&gt;
+				&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;&lt;div class=&quot;benchmark__row&quot;&gt;
+&lt;span class=&quot;benchmark__library-name&quot;&gt;Preact&lt;/span&gt;
+&lt;div class=&quot;benchmark__progress-container&quot;&gt;
+&lt;div class=&quot;benchmark__progress-bar&quot; style=&quot;--width: 4.399885964078685%&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;span class=&quot;benchmark__value-display&quot;&gt;4.63&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
+&lt;h3 id=&quot;bundle-size-analysis&quot;&gt;Bundle Size Analysis&lt;/h3&gt;
+&lt;p&gt;After gzip compression, React weighs 105KB while Preact comes in at just 4.6KB — that&#39;s a 22x difference.&lt;/p&gt;
+&lt;p&gt;This matters most for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Mobile users&lt;/strong&gt; on slow networks where every kilobyte counts&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;First-time visitors&lt;/strong&gt; who haven&#39;t cached your JavaScript yet&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;E-commerce sites&lt;/strong&gt; where loading speed directly impacts conversion rates&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Global audiences&lt;/strong&gt; including emerging markets with limited bandwidth&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;benchmark-environment&quot;&gt;Benchmark Environment&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Hardware:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Intel Xeon W-11955M&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Software:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Node v22.15.1&lt;/li&gt;
+&lt;li&gt;react v19.1.0&lt;/li&gt;
+&lt;li&gt;react-dom v19.1.0&lt;/li&gt;
+&lt;li&gt;preact v10.26.4&lt;/li&gt;
+&lt;li&gt;preact-render-to-string v6.5.13&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/gwer/1rps-club/tree/main/content/blog/react-preact-performance-benchmark-2025/_benchmark/&quot;&gt;Benchmark code&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;The performance difference is hard to ignore. Preact uses the same API as React (hooks, JSX, components), and &lt;code&gt;preact/compat&lt;/code&gt; handles most migration scenarios without code changes.&lt;/p&gt;
+&lt;p&gt;When React still makes sense:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Next.js and similar React-specific frameworks&lt;/li&gt;
+&lt;li&gt;Heavy use of React ecosystem packages that break with compat&lt;/li&gt;
+&lt;li&gt;React-only features that Preact doesn&#39;t support&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For everything else, especially if performance matters, Preact is worth considering.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

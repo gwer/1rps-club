@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Preact vs React 2025: 20x Faster Server Performance, 22x Smaller Bundle</title>
+		<meta name="description" content="Preact outperforms React by 20x in server-side rendering and 22x in bundle size. Complete benchmark with real performance numbers.">
+		<link rel="alternate" href="/eleventy-base-blog/feed/feed.xml" type="application/atom+xml" title="1RPS.club">
+		
+		
+		
+		<style>/* This is an arbitrary CSS string added to the bundle */
+/* Defaults */
+:root {
+	--font-family: -apple-system, system-ui, sans-serif;
+	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono,
+		Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono,
+		Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New,
+		Courier, monospace;
+}
+
+/* Theme colors */
+:root {
+	--color-gray-20: #f5f5f4;
+	--color-gray-50: #a8a29e;
+	--color-gray-90: #44403c;
+
+	--background-color: #fff6ee;
+
+	--text-color: var(--color-gray-90);
+	--text-color-link: #b45309;
+	--text-color-link-active: #92400e;
+	--text-color-link-visited: #78350f;
+
+	--syntax-tab-size: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-gray-20: #57534e;
+		--color-gray-50: #a8a29e;
+		--color-gray-90: #e7e5e4;
+
+		/* --text-color is assigned to --color-gray-_ above */
+		--text-color-link: #e4c580;
+		--text-color-link-active: #f2d49c;
+		--text-color-link-visited: #c4a373;
+
+		--background-color: #292524;
+	}
+}
+
+/* Global stylesheet */
+* {
+	box-sizing: border-box;
+}
+
+@view-transition {
+	navigation: auto;
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+	background-color: var(--background-color);
+}
+html {
+	overflow-y: scroll;
+}
+body {
+	display: flex;
+	flex-direction: column;
+	max-width: 40em;
+	min-height: 100vh;
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden:not(:focus):not(:active) {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+/* Fluid images via https://www.zachleat.com/web/fluid-images/ */
+img {
+	max-width: 100%;
+}
+img[width][height] {
+	height: auto;
+}
+img[src$='.svg'] {
+	width: 100%;
+	height: auto;
+	max-width: none;
+}
+video,
+iframe {
+	width: 100%;
+	height: auto;
+}
+iframe {
+	aspect-ratio: 16/9;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+p {
+	line-height: 1.5;
+}
+
+li {
+	line-height: 1.5;
+}
+
+a[href] {
+	color: var(--text-color-link);
+}
+a[href]:visited {
+	color: var(--text-color-link-visited);
+}
+a[href]:hover,
+a[href]:active {
+	color: var(--text-color-link-active);
+}
+
+main {
+	flex-grow: 1;
+}
+main,
+footer {
+	padding: 1rem;
+}
+main :first-child {
+	margin-top: 0;
+}
+
+header {
+	border-bottom: 1px dashed var(--color-gray-20);
+}
+
+#skip-link {
+	text-decoration: none;
+	background: var(--background-color);
+	color: var(--text-color);
+	padding: 0.5rem 1rem;
+	border: 1px solid var(--color-gray-90);
+	border-radius: 2px;
+}
+
+/* Prevent visually-hidden skip link fom pushing content around when focused */
+#skip-link.visually-hidden:focus {
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+	/* Ensure it is positioned on top of everything else when it is shown */
+	z-index: 999;
+}
+
+.links-nextprev {
+	display: flex;
+	justify-content: space-between;
+	gap: 0.5em 1em;
+	list-style: '';
+	border-top: 1px dashed var(--color-gray-20);
+	padding: 1em 0;
+}
+.links-nextprev > * {
+	flex-grow: 1;
+}
+.links-nextprev-next {
+	text-align: right;
+}
+
+table {
+	margin: 1em 0;
+}
+table td,
+table th {
+	padding-right: 1em;
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospace);
+}
+pre:not([class*='language-']) {
+	margin: 0.5em 0;
+	line-height: 1.375; /* 22px /16 */
+	-moz-tab-size: var(--syntax-tab-size);
+	-o-tab-size: var(--syntax-tab-size);
+	tab-size: var(--syntax-tab-size);
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	overflow-x: auto;
+}
+code {
+	word-break: break-all;
+}
+
+/* Header */
+header {
+	display: flex;
+	gap: 1em;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1em;
+}
+.home-link {
+	flex-grow: 1;
+	font-size: 1em; /* 16px /16 */
+	font-weight: 700;
+}
+.home-link:link:not(:hover) {
+	text-decoration: none;
+}
+
+/* Nav */
+.nav {
+	display: flex;
+	gap: 0.5em 1em;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.nav-item {
+	display: inline-block;
+}
+.nav-item a[href]:not(:hover) {
+	text-decoration: none;
+}
+.nav a[href][aria-current='page'] {
+	text-decoration: underline;
+}
+
+/* Posts list */
+.postlist {
+	padding: 0;
+}
+.postlist-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	margin-bottom: 1em;
+}
+.postlist-date {
+	font-size: 0.8125em; /* 13px /16 */
+	color: var(--color-gray-90);
+}
+.postlist-date {
+	word-spacing: -0.5px;
+}
+.postlist-link {
+	font-size: 1.1875em; /* 19px /16 */
+	font-weight: 700;
+	flex-basis: calc(100% - 1.5rem);
+	text-underline-position: from-font;
+	text-underline-offset: 0;
+	text-decoration-thickness: 1px;
+}
+.postlist-item-active .postlist-link {
+	font-weight: bold;
+}
+
+/* Tags */
+.post-tag {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
+	font-style: italic;
+}
+.postlist-item > .post-tag {
+	align-self: center;
+}
+
+/* Tags list */
+.post-metadata {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 1em;
+}
+.post-metadata time {
+	margin-right: 1em;
+}
+
+/* Benchmark */
+.benchmark {
+	margin: 2rem 0;
+}
+
+.benchmark__row {
+	display: grid;
+	grid-template-columns: 100px 1fr 60px 30px;
+	gap: 1rem;
+	align-items: center;
+	/* Animation*/
+	opacity: 0;
+	transform: translateX(-20px);
+	animation: slideInLeft 0.6s ease forwards;
+}
+
+.benchmark__row:nth-child(2) {
+	animation-delay: 0.1s;
+}
+.benchmark__row:nth-child(3) {
+	animation-delay: 0.2s;
+}
+.benchmark__row:nth-child(4) {
+	animation-delay: 0.3s;
+}
+.benchmark__row:nth-child(5) {
+	animation-delay: 0.4s;
+}
+.benchmark__row:nth-child(6) {
+	animation-delay: 0.5s;
+}
+
+.benchmark__library-name {
+	width: 100px;
+	font-weight: 500;
+}
+
+.benchmark__progress-container {
+	flex: 1;
+	height: 24px;
+	overflow: hidden;
+	margin: 0 1rem;
+	background: #8883;
+	border-radius: 4px;
+	position: relative;
+}
+
+.benchmark__progress-bar {
+	height: 100%;
+	width: var(--width);
+	background: linear-gradient(90deg, #3b82f6 0%, #5c4fd4 100%);
+	border-radius: 4px;
+	transition: width 0.8s ease;
+	position: relative;
+	overflow: hidden;
+	/* Animation*/
+	animation: fillProgress 1.2s ease-out forwards;
+	animation-delay: calc(var(--delay, 0) * 0.1s + 0.3s);
+	width: 0;
+}
+
+.benchmark__progress-bar::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 255, 255, 0.1),
+		transparent
+	);
+	animation: shimmer 2s ease-in-out infinite;
+	animation-delay: calc(var(--delay, 0) * 0.1s + 1.5s);
+}
+
+.benchmark__value-display {
+	font-size: 12px;
+	font-weight: 500;
+	text-align: right;
+	/* Animation*/
+	opacity: 0;
+	animation: fadeIn 0.4s ease forwards;
+	animation-delay: calc(var(--delay, 0) * 0.1s + 1s);
+}
+
+/* Animations */
+@keyframes slideInLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes fillProgress {
+	from {
+		width: 0;
+	}
+	to {
+		width: var(--width);
+	}
+}
+
+@keyframes shimmer {
+	0% {
+		left: -100%;
+	}
+	100% {
+		left: 100%;
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #8292a2;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+/*
+ * New diff- syntax
+ */
+
+pre[class*="language-diff-"] {
+	--eleventy-code-padding: 1.25em;
+	padding-left: var(--eleventy-code-padding);
+	padding-right: var(--eleventy-code-padding);
+}
+.token.deleted {
+	background-color: hsl(0, 51%, 37%);
+	color: inherit;
+}
+.token.inserted {
+	background-color: hsl(126, 31%, 39%);
+	color: inherit;
+}
+
+/* Make the + and - characters unselectable for copy/paste */
+.token.prefix.unchanged,
+.token.prefix.inserted,
+.token.prefix.deleted {
+	-webkit-user-select: none;
+	user-select: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.token.prefix.inserted,
+.token.prefix.deleted {
+	width: var(--eleventy-code-padding);
+	background-color: rgba(0,0,0,.2);
+}
+
+/* Optional: full-width background color */
+.token.inserted:not(.prefix),
+.token.deleted:not(.prefix) {
+	display: block;
+	margin-left: calc(-1 * var(--eleventy-code-padding));
+	margin-right: calc(-1 * var(--eleventy-code-padding));
+	text-decoration: none; /* override del, ins, mark defaults */
+	color: inherit; /* override del, ins, mark defaults */
+}</style>
+		
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/eleventy-base-blog/" class="home-link">1RPS.club</a>
+			<nav>
+				<h2 class="visually-hidden" id="top-level-navigation-menu">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/eleventy-base-blog/">Home</a></li>
+					<li class="nav-item"><a href="/eleventy-base-blog/about/">About</a></li>
+					<li class="nav-item"><a href="/eleventy-base-blog/feed/feed.xml">Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="main">
+			<heading-anchors>
+				
+
+
+<h1 id="preact-vs-react-2025-20x-faster-server-performance-22x-smaller-bundle">Preact vs React 2025: 20x Faster Server Performance, 22x Smaller Bundle</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2025-07-12">12 July 2025</time></li>
+	<li><a href="/eleventy-base-blog/tags/react/" class="post-tag">react</a>, </li>
+	<li><a href="/eleventy-base-blog/tags/preact/" class="post-tag">preact</a>, </li>
+	<li><a href="/eleventy-base-blog/tags/benchmark/" class="post-tag">benchmark</a></li>
+</ul>
+
+<h2 id="server-side-rendering-speed-react-vs-preact">Server-Side Rendering Speed: React vs Preact</h2>
+<p>React is a popular library for building user interfaces. You can love it or hate it, but it has already claimed its place and is here to stay. While it may be great for complex SPAs, it can also be quite useful as a modular templating engine, allowing you to add interactivity to websites when needed.</p>
+<p>But how efficient is it? To find out, let's compare it with Preact — the closest analog that can, with some reservations, be considered a drop-in replacement for React.</p>
+<p>The first thing I want to examine is rendering speed. To be precise, this is the speed of transforming our JS code into an HTML string to serve to the client. This characteristic helps determine how much money you'll need to spend on servers or how much traffic a single server can handle.</p>
+<h3 id="performance-benchmarks">Performance Benchmarks</h3>
+<div class="benchmark"><h4 id="render-simple-component-ops-sec">Render simple component (ops/sec)</h4>
+				<div class="benchmark__row">
+					<span class="benchmark__library-name">React</span>
+					<div class="benchmark__progress-container">
+						<div class="benchmark__progress-bar" style="--width: 4.8520887878937575%">
+						</div>
+					</div>
+					<span class="benchmark__value-display">70,719</span>
+				</div>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">Preact</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 100%">
+</div>
+</div>
+<span class="benchmark__value-display">1,457,496</span>
+</div>
+</div><p></p>
+<div class="benchmark"><h4 id="render-small-list-10-items-ops-sec">Render small list (10 items) (ops/sec)</h4>
+				<div class="benchmark__row">
+					<span class="benchmark__library-name">React</span>
+					<div class="benchmark__progress-container">
+						<div class="benchmark__progress-bar" style="--width: 4.870567265642811%">
+						</div>
+					</div>
+					<span class="benchmark__value-display">2,350</span>
+				</div>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">Preact</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 100%">
+</div>
+</div>
+<span class="benchmark__value-display">48,249</span>
+</div>
+</div><p></p>
+<div class="benchmark"><h4 id="render-medium-list-100-items-ops-sec">Render medium list (100 items) (ops/sec)</h4>
+				<div class="benchmark__row">
+					<span class="benchmark__library-name">React</span>
+					<div class="benchmark__progress-container">
+						<div class="benchmark__progress-bar" style="--width: 4.519096180763847%">
+						</div>
+					</div>
+					<span class="benchmark__value-display">226</span>
+				</div>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">Preact</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 100%">
+</div>
+</div>
+<span class="benchmark__value-display">5,001</span>
+</div>
+</div><p></p>
+<div class="benchmark"><h4 id="render-large-list-1000-items-ops-sec">Render large list (1000 items) (ops/sec)</h4>
+				<div class="benchmark__row">
+					<span class="benchmark__library-name">React</span>
+					<div class="benchmark__progress-container">
+						<div class="benchmark__progress-bar" style="--width: 7.20391061452514%">
+						</div>
+					</div>
+					<span class="benchmark__value-display">25.79</span>
+				</div>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">Preact</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 100%">
+</div>
+</div>
+<span class="benchmark__value-display">358</span>
+</div>
+</div><p></p>
+<div class="benchmark"><h4 id="render-nested-components-ops-sec">Render nested components (ops/sec)</h4>
+				<div class="benchmark__row">
+					<span class="benchmark__library-name">React</span>
+					<div class="benchmark__progress-container">
+						<div class="benchmark__progress-bar" style="--width: 4.780317547221462%">
+						</div>
+					</div>
+					<span class="benchmark__value-display">1,397</span>
+				</div>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">Preact</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 100%">
+</div>
+</div>
+<span class="benchmark__value-display">29,224</span>
+</div>
+</div><p></p>
+<h3 id="performance-analysis">Performance Analysis</h3>
+<p>Preact consistently outperforms React across all test scenarios, with most cases showing 20x+ improvements.</p>
+<p>For server costs, this translates directly to bottom-line impact. With 20x better performance, you can either serve 20x more users on the same hardware, or reduce your server costs by 95% while maintaining the same capacity. Of course, this calculation assumes your server's primary workload is HTML generation.</p>
+<h2 id="bundle-size-the-client-side-story">Bundle Size: The Client-Side Story</h2>
+<p>Now, suppose we want to not just serve HTML, but also add some interactivity to the page. The advantage of React (and Preact too) is that interactivity can be added directly within components using hooks. But for this to work, you need to build a client bundle, serve it to the browser, and perform hydration. Without this procedure, you'd have just plain HTML (which is often perfectly sufficient).</p>
+<p>Therefore, it's worth building both libraries into bundles and measuring their sizes. The measurement shows the amount of JS code that needs to be transferred to the browser, parsed, and executed. This affects both the traffic between client and server, and how quickly all that interactivity becomes available to the user.</p>
+<h3 id="bundle-size-benchmarks">Bundle Size Benchmarks</h3>
+<div class="benchmark"><h4 id="bundle-size-kb">Bundle size (KB)</h4>
+				<div class="benchmark__row">
+					<span class="benchmark__library-name">React</span>
+					<div class="benchmark__progress-container">
+						<div class="benchmark__progress-bar" style="--width: 100%">
+						</div>
+					</div>
+					<span class="benchmark__value-display">348.38</span>
+				</div>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">Preact</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 3.142057523393995%">
+</div>
+</div>
+<span class="benchmark__value-display">10.946</span>
+</div>
+</div><p></p>
+<div class="benchmark"><h4 id="bundle-size-gzip-kb">Bundle size (gzip) (KB)</h4>
+				<div class="benchmark__row">
+					<span class="benchmark__library-name">React</span>
+					<div class="benchmark__progress-container">
+						<div class="benchmark__progress-bar" style="--width: 100%">
+						</div>
+					</div>
+					<span class="benchmark__value-display">105.23</span>
+				</div>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">Preact</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 4.399885964078685%">
+</div>
+</div>
+<span class="benchmark__value-display">4.63</span>
+</div>
+</div><p></p>
+<h3 id="bundle-size-analysis">Bundle Size Analysis</h3>
+<p>After gzip compression, React weighs 105KB while Preact comes in at just 4.6KB — that's a 22x difference.</p>
+<p>This matters most for:</p>
+<ul>
+<li><strong>Mobile users</strong> on slow networks where every kilobyte counts</li>
+<li><strong>First-time visitors</strong> who haven't cached your JavaScript yet</li>
+<li><strong>E-commerce sites</strong> where loading speed directly impacts conversion rates</li>
+<li><strong>Global audiences</strong> including emerging markets with limited bandwidth</li>
+</ul>
+<h2 id="benchmark-environment">Benchmark Environment</h2>
+<p><strong>Hardware:</strong></p>
+<ul>
+<li>Intel Xeon W-11955M</li>
+</ul>
+<p><strong>Software:</strong></p>
+<ul>
+<li>Node v22.15.1</li>
+<li>react v19.1.0</li>
+<li>react-dom v19.1.0</li>
+<li>preact v10.26.4</li>
+<li>preact-render-to-string v6.5.13</li>
+</ul>
+<p><a href="https://github.com/gwer/1rps-club/tree/main/content/blog/react-preact-performance-benchmark-2025/_benchmark/">Benchmark code</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The performance difference is hard to ignore. Preact uses the same API as React (hooks, JSX, components), and <code>preact/compat</code> handles most migration scenarios without code changes.</p>
+<p>When React still makes sense:</p>
+<ul>
+<li>Next.js and similar React-specific frameworks</li>
+<li>Heavy use of React ecosystem packages that break with compat</li>
+<li>React-only features that Preact doesn't support</li>
+</ul>
+<p>For everything else, especially if performance matters, Preact is worth considering.</p>
+
+
+			</heading-anchors>
+		</main>
+
+		<footer>
+			<p>
+				<a href="https://github.com/gwer/1rps-club" target="_blank">GitHub</a>
+			</p>
+		</footer>
+
+		<!-- This page `/blog/react-preact-performance-benchmark-2025/` was built on 2025-07-12T09:41:49.823Z -->
+		<script type="module" src="/eleventy-base-blog/dist/xbxy_EL6cU.js"></script>
+	</body>
+</html>
