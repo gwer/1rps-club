@@ -1,5 +1,7 @@
 # React vs Preact Benchmark
 
+https://1rps.club/blog/react-preact-performance-benchmark-2025/
+
 ## Prerequisites
 
 - Node.js (v20 or later)
