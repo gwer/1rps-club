@@ -3,18 +3,18 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <title>1RPS.club</title>
   <subtitle>1RPS.club</subtitle>
-  <link href="https://1rps.club/eleventy-base-blog/feed/feed.xml" rel="self" />
-  <link href="https://1rps.club/eleventy-base-blog/" />
+  <link href="https://1rps.club/feed/feed.xml" rel="self" />
+  <link href="https://1rps.club/" />
   <updated>2025-07-12T00:00:00Z</updated>
-  <id>https://1rps.club/eleventy-base-blog/</id>
+  <id>https://1rps.club/</id>
   <author>
     <name>gwer</name>
   </author>
   <entry>
     <title>Preact vs React 2025: 20x Faster Server Performance, 22x Smaller Bundle</title>
-    <link href="https://1rps.club/eleventy-base-blog/blog/react-preact-performance-benchmark-2025/" />
+    <link href="https://1rps.club/blog/react-preact-performance-benchmark-2025/" />
     <updated>2025-07-12T00:00:00Z</updated>
-    <id>https://1rps.club/eleventy-base-blog/blog/react-preact-performance-benchmark-2025/</id>
+    <id>https://1rps.club/blog/react-preact-performance-benchmark-2025/</id>
     <content type="html">&lt;h2 id=&quot;server-side-rendering-speed-react-vs-preact&quot;&gt;Server-Side Rendering Speed: React vs Preact&lt;/h2&gt;
 &lt;p&gt;React is a popular library for building user interfaces. You can love it or hate it, but it has already claimed its place and is here to stay. While it may be great for complex SPAs, it can also be quite useful as a modular templating engine, allowing you to add interactivity to websites when needed.&lt;/p&gt;
 &lt;p&gt;But how efficient is it? To find out, let&#39;s compare it with Preact — the closest analog that can, with some reservations, be considered a drop-in replacement for React.&lt;/p&gt;
