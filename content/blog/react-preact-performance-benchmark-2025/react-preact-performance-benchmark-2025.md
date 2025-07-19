@@ -76,3 +76,5 @@ When React still makes sense:
 - React-only features that Preact doesn't support
 
 For everything else, especially if performance matters, Preact is worth considering.
+
+**Want to see it in action?** Watch [React Is Killing Your App Speed. Fix It in 5 Minutes.](https://www.youtube.com/watch?v=WTZjanKopsY) for step-by-step migration from React to Preact with real web application, client hydration, and load testing.
