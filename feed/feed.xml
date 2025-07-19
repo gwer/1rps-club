@@ -185,6 +185,7 @@
 &lt;li&gt;React-only features that Preact doesn&#39;t support&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;For everything else, especially if performance matters, Preact is worth considering.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Want to see it in action?&lt;/strong&gt; Watch &lt;a href=&quot;https://www.youtube.com/watch?v=WTZjanKopsY&quot;&gt;React Is Killing Your App Speed. Fix It in 5 Minutes.&lt;/a&gt; for step-by-step migration from React to Preact with real web application, client hydration, and load testing.&lt;/p&gt;
 </content>
   </entry>
 </feed>
