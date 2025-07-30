@@ -5,11 +5,11 @@ date: 2025-07-12
 tags: ['react', 'preact', 'benchmark']
 ---
 
-## Server-Side Rendering Speed: React vs Preact
-
 React is a popular library for building user interfaces. You can love it or hate it, but it has already claimed its place and is here to stay. While it may be great for complex SPAs, it can also be quite useful as a modular templating engine, allowing you to add interactivity to websites when needed.
 
 But how efficient is it? To find out, let's compare it with Preact — the closest analog that can, with some reservations, be considered a drop-in replacement for React.
+
+## Server-Side Rendering Speed: React vs Preact
 
 The first thing I want to examine is rendering speed. To be precise, this is the speed of transforming our JS code into an HTML string to serve to the client. This characteristic helps determine how much money you'll need to spend on servers or how much traffic a single server can handle.
 
