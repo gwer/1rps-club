@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF Generation Benchmark Test</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+      }
+      .endpoint {
+        background: #f5f5f5;
+        padding: 20px;
+        margin: 10px 0;
+        border-radius: 8px;
+        border-left: 4px solid #007cba;
+      }
+      .endpoint h3 {
+        margin-top: 0;
+      }
+      button {
+        background: #007cba;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      button:hover {
+        background: #005a8b;
+      }
+      .status {
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 4px;
+      }
+      .success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+      .error {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+      .timing {
+        font-weight: bold;
+        color: #007cba;
+      }
+      .size-buttons {
+        margin: 10px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .size-buttons button {
+        background: #28a745;
+      }
+      .size-buttons button:hover {
+        background: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>PDF Generation Benchmark Test</h1>
+    <p>
+      Test all PDF generation endpoints. Click the buttons to generate PDFs with
+      each method.
+    </p>
+
+    <div class="endpoint">
+      <h3>PDFKit</h3>
+      <p>Programmatic PDF generation with PDFKit library</p>
+      <div class="size-buttons">
+        <button
+          onclick="testEndpoint('/pdf/pdfkit?size=small', 'pdfkit-small')"
+        >
+          Small
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfkit?size=medium', 'pdfkit-medium')"
+        >
+          Medium
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfkit?size=large', 'pdfkit-large')"
+        >
+          Large
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfkit?size=small-table', 'pdfkit-small-table')"
+        >
+          Small Table
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfkit?size=medium-table', 'pdfkit-medium-table')"
+        >
+          Medium Table
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfkit?size=large-table', 'pdfkit-large-table')"
+        >
+          Large Table
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfkit?size=small&font=Helvetica', 'pdfkit-small-helvetica')"
+        >
+          Small (Helvetica)
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfkit?size=medium&font=Helvetica', 'pdfkit-medium-helvetica')"
+        >
+          Medium (Helvetica)
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfkit?size=large&font=Helvetica', 'pdfkit-large-helvetica')"
+        >
+          Large (Helvetica)
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfkit?size=small-table&font=Helvetica', 'pdfkit-small-table-helvetica')"
+        >
+          Small Table (Helvetica)
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfkit?size=medium-table&font=Helvetica', 'pdfkit-medium-table-helvetica')"
+        >
+          Medium Table (Helvetica)
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfkit?size=large-table&font=Helvetica', 'pdfkit-large-table-helvetica')"
+        >
+          Large Table (Helvetica)
+        </button>
+      </div>
+      <div id="pdfkit-small-status"></div>
+      <div id="pdfkit-medium-status"></div>
+      <div id="pdfkit-large-status"></div>
+      <div id="pdfkit-small-table-status"></div>
+      <div id="pdfkit-medium-table-status"></div>
+      <div id="pdfkit-large-table-status"></div>
+      <div id="pdfkit-small-helvetica-status"></div>
+      <div id="pdfkit-medium-helvetica-status"></div>
+      <div id="pdfkit-large-helvetica-status"></div>
+      <div id="pdfkit-small-table-helvetica-status"></div>
+      <div id="pdfkit-medium-table-helvetica-status"></div>
+      <div id="pdfkit-large-table-helvetica-status"></div>
+    </div>
+
+    <div class="endpoint">
+      <h3>PDFMake</h3>
+      <p>Declarative PDF generation with PDFMake library</p>
+      <div class="size-buttons">
+        <button
+          onclick="testEndpoint('/pdf/pdfmake?size=small', 'pdfmake-small')"
+        >
+          Small
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfmake?size=medium', 'pdfmake-medium')"
+        >
+          Medium
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfmake?size=large', 'pdfmake-large')"
+        >
+          Large
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfmake?size=small-table', 'pdfmake-small-table')"
+        >
+          Small Table
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfmake?size=medium-table', 'pdfmake-medium-table')"
+        >
+          Medium Table
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfmake?size=large-table', 'pdfmake-large-table')"
+        >
+          Large Table
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfmake?size=small&font=Helvetica', 'pdfmake-small-helvetica')"
+        >
+          Small (Helvetica)
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfmake?size=medium&font=Helvetica', 'pdfmake-medium-helvetica')"
+        >
+          Medium (Helvetica)
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfmake?size=large&font=Helvetica', 'pdfmake-large-helvetica')"
+        >
+          Large (Helvetica)
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfmake?size=small-table&font=Helvetica', 'pdfmake-small-table-helvetica')"
+        >
+          Small Table (Helvetica)
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfmake?size=medium-table&font=Helvetica', 'pdfmake-medium-table-helvetica')"
+        >
+          Medium Table (Helvetica)
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/pdfmake?size=large-table&font=Helvetica', 'pdfmake-large-table-helvetica')"
+        >
+          Large Table (Helvetica)
+        </button>
+      </div>
+      <div id="pdfmake-small-status"></div>
+      <div id="pdfmake-medium-status"></div>
+      <div id="pdfmake-large-status"></div>
+      <div id="pdfmake-small-table-status"></div>
+      <div id="pdfmake-medium-table-status"></div>
+      <div id="pdfmake-large-table-status"></div>
+      <div id="pdfmake-small-helvetica-status"></div>
+      <div id="pdfmake-medium-helvetica-status"></div>
+      <div id="pdfmake-large-helvetica-status"></div>
+      <div id="pdfmake-small-table-helvetica-status"></div>
+      <div id="pdfmake-medium-table-helvetica-status"></div>
+      <div id="pdfmake-large-table-helvetica-status"></div>
+    </div>
+
+    <div class="endpoint">
+      <h3>React-PDF</h3>
+      <p>React-based PDF generation</p>
+      <div class="size-buttons">
+        <button
+          onclick="testEndpoint('/pdf/reactpdf?size=small', 'reactpdf-small')"
+        >
+          Small
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/reactpdf?size=medium', 'reactpdf-medium')"
+        >
+          Medium
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/reactpdf?size=large', 'reactpdf-large')"
+        >
+          Large
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/reactpdf?size=small-table', 'reactpdf-small-table')"
+        >
+          Small Table
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/reactpdf?size=medium-table', 'reactpdf-medium-table')"
+        >
+          Medium Table
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/reactpdf?size=large-table', 'reactpdf-large-table')"
+        >
+          Large Table
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/reactpdf?size=small&font=Helvetica', 'reactpdf-small-helvetica')"
+        >
+          Small (Helvetica)
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/reactpdf?size=medium&font=Helvetica', 'reactpdf-medium-helvetica')"
+        >
+          Medium (Helvetica)
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/reactpdf?size=large&font=Helvetica', 'reactpdf-large-helvetica')"
+        >
+          Large (Helvetica)
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/reactpdf?size=small-table&font=Helvetica', 'reactpdf-small-table-helvetica')"
+        >
+          Small Table (Helvetica)
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/reactpdf?size=medium-table&font=Helvetica', 'reactpdf-medium-table-helvetica')"
+        >
+          Medium Table (Helvetica)
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/reactpdf?size=large-table&font=Helvetica', 'reactpdf-large-table-helvetica')"
+        >
+          Large Table (Helvetica)
+        </button>
+      </div>
+      <div id="reactpdf-small-status"></div>
+      <div id="reactpdf-medium-status"></div>
+      <div id="reactpdf-large-status"></div>
+      <div id="reactpdf-small-table-status"></div>
+      <div id="reactpdf-medium-table-status"></div>
+      <div id="reactpdf-large-table-status"></div>
+      <div id="reactpdf-small-helvetica-status"></div>
+      <div id="reactpdf-medium-helvetica-status"></div>
+      <div id="reactpdf-large-helvetica-status"></div>
+      <div id="reactpdf-small-table-helvetica-status"></div>
+      <div id="reactpdf-medium-table-helvetica-status"></div>
+      <div id="reactpdf-large-table-helvetica-status"></div>
+    </div>
+
+    <div class="endpoint">
+      <h3>Puppeteer</h3>
+      <p>HTML to PDF using headless Chrome</p>
+      <div class="size-buttons">
+        <button
+          onclick="testEndpoint('/pdf/puppeteer?size=small', 'puppeteer-small')"
+        >
+          Small
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/puppeteer?size=medium', 'puppeteer-medium')"
+        >
+          Medium
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/puppeteer?size=large', 'puppeteer-large')"
+        >
+          Large
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/puppeteer?size=small-table', 'puppeteer-small-table')"
+        >
+          Small Table
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/puppeteer?size=medium-table', 'puppeteer-medium-table')"
+        >
+          Medium Table
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/puppeteer?size=large-table', 'puppeteer-large-table')"
+        >
+          Large Table
+        </button>
+      </div>
+      <div id="puppeteer-small-status"></div>
+      <div id="puppeteer-medium-status"></div>
+      <div id="puppeteer-large-status"></div>
+      <div id="puppeteer-small-table-status"></div>
+      <div id="puppeteer-medium-table-status"></div>
+      <div id="puppeteer-large-table-status"></div>
+    </div>
+
+    <div class="endpoint">
+      <h3>wkhtmltopdf</h3>
+      <p>HTML to PDF using wkhtmltopdf</p>
+      <div class="size-buttons">
+        <button
+          onclick="testEndpoint('/pdf/wkhtmltopdf?size=small', 'wkhtmltopdf-small')"
+        >
+          Small
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/wkhtmltopdf?size=medium', 'wkhtmltopdf-medium')"
+        >
+          Medium
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/wkhtmltopdf?size=large', 'wkhtmltopdf-large')"
+        >
+          Large
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/wkhtmltopdf?size=small-table', 'wkhtmltopdf-small-table')"
+        >
+          Small Table
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/wkhtmltopdf?size=medium-table', 'wkhtmltopdf-medium-table')"
+        >
+          Medium Table
+        </button>
+        <button
+          onclick="testEndpoint('/pdf/wkhtmltopdf?size=large-table', 'wkhtmltopdf-large-table')"
+        >
+          Large Table
+        </button>
+      </div>
+      <div id="wkhtmltopdf-small-status"></div>
+      <div id="wkhtmltopdf-medium-status"></div>
+      <div id="wkhtmltopdf-large-status"></div>
+      <div id="wkhtmltopdf-small-table-status"></div>
+      <div id="wkhtmltopdf-medium-table-status"></div>
+      <div id="wkhtmltopdf-large-table-status"></div>
+    </div>
+
+    <script>
+      async function testEndpoint(endpoint, id) {
+        const statusDiv = document.getElementById(id + "-status");
+        statusDiv.innerHTML = '<div class="status">Testing...</div>';
+
+        const startTime = performance.now();
+
+        try {
+          const response = await fetch(endpoint);
+          const endTime = performance.now();
+          const duration = Math.round(endTime - startTime);
+
+          if (response.ok) {
+            statusDiv.innerHTML = `
+                        <div class="status success">
+                            ✅ Success! PDF downloaded. 
+                            <span class="timing">Time: ${duration}ms</span>
+                        </div>
+                    `;
+          } else {
+            throw new Error(
+              `HTTP ${response.status}: ${await response.text()}`
+            );
+          }
+        } catch (error) {
+          const endTime = performance.now();
+          const duration = Math.round(endTime - startTime);
+
+          statusDiv.innerHTML = `
+                    <div class="status error">
+                        ❌ Error: ${error.message}
+                        <span class="timing">Time: ${duration}ms</span>
+                    </div>
+                `;
+        }
+      }
+    </script>
+  </body>
+</html>

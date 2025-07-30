@@ -1,0 +1,579 @@
+Bombarding http://pdf.1rps.club:3000/pdf/pdfkit?size=small for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec        13.07      18.93      52.33
+  Latency       76.51ms    28.60ms   242.14ms
+  HTTP codes:
+    1xx - 0, 2xx - 131, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   210.39KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfkit?size=medium for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         8.69      17.23      53.12
+  Latency      114.97ms    22.97ms   205.55ms
+  HTTP codes:
+    1xx - 0, 2xx - 87, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   224.55KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfkit?size=large for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         2.21      10.04      54.08
+  Latency      449.24ms    50.18ms   559.53ms
+  HTTP codes:
+    1xx - 0, 2xx - 23, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   271.22KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfkit?size=small-table for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         2.80      11.16      52.59
+  Latency      353.59ms    21.73ms   386.85ms
+  HTTP codes:
+    1xx - 0, 2xx - 29, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    53.49KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfkit?size=medium-table for 20s using 1 connection(s)
+[=============================================================================================================================================================================================================] 20s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         0.45       4.73      51.18
+  Latency         2.22s    83.16ms      2.35s
+  HTTP codes:
+    1xx - 0, 2xx - 10, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    12.67KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfkit?size=large-table for 1m0s using 1 connection(s)
+[============================================================================================================================================================================================================] 1m0s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         0.03       1.31      50.95
+  Latency        20.84s   444.47ms     21.42s
+  HTTP codes:
+    1xx - 0, 2xx - 3, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:     5.87KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfkit?size=small&font=Helvetica for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec        64.02      23.00     103.95
+  Latency       15.61ms     4.80ms   114.41ms
+  HTTP codes:
+    1xx - 0, 2xx - 640, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   172.29KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfkit?size=medium&font=Helvetica for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec        14.66      19.09      52.60
+  Latency       67.84ms     6.85ms   107.32ms
+  HTTP codes:
+    1xx - 0, 2xx - 148, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   183.24KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfkit?size=large&font=Helvetica for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         1.77       9.01      52.36
+  Latency      544.59ms    42.51ms   609.15ms
+  HTTP codes:
+    1xx - 0, 2xx - 19, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   197.80KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfkit?size=small-table&font=Helvetica for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec        58.74      19.65     104.81
+  Latency       17.03ms     2.40ms    38.07ms
+  HTTP codes:
+    1xx - 0, 2xx - 587, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   194.85KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfkit?size=medium-table&font=Helvetica for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec        15.50      19.16      52.41
+  Latency       64.05ms    11.43ms   148.05ms
+  HTTP codes:
+    1xx - 0, 2xx - 157, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   189.61KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfkit?size=large-table&font=Helvetica for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         1.80       9.14      52.29
+  Latency      549.63ms    57.50ms   641.43ms
+  HTTP codes:
+    1xx - 0, 2xx - 19, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   187.20KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfmake?size=small for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         9.31      17.55      52.25
+  Latency      107.04ms    36.01ms   308.09ms
+  HTTP codes:
+    1xx - 0, 2xx - 94, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   194.35KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfmake?size=medium for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         3.84      12.81      52.53
+  Latency      254.50ms    34.26ms   338.48ms
+  HTTP codes:
+    1xx - 0, 2xx - 40, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   206.81KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfmake?size=large for 20s using 1 connection(s)
+[=============================================================================================================================================================================================================] 20s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         0.60       5.79      96.15
+  Latency         1.77s    82.10ms      1.95s
+  HTTP codes:
+    1xx - 0, 2xx - 12, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   213.33KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfmake?size=small-table for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec        11.96      18.57      52.46
+  Latency       83.29ms    30.48ms   206.55ms
+  HTTP codes:
+    1xx - 0, 2xx - 121, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   249.93KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfmake?size=medium-table for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         7.28      16.27      52.64
+  Latency      136.00ms    33.49ms   253.49ms
+  HTTP codes:
+    1xx - 0, 2xx - 74, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   222.09KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfmake?size=large-table for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         1.49       8.30      52.39
+  Latency      629.21ms    58.80ms   703.65ms
+  HTTP codes:
+    1xx - 0, 2xx - 17, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   206.83KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfmake?size=small&font=Helvetica for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec        26.96      16.96      52.71
+  Latency       36.98ms    15.06ms   135.13ms
+  HTTP codes:
+    1xx - 0, 2xx - 271, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   145.81KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfmake?size=medium&font=Helvetica for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         4.03      13.07      51.92
+  Latency      246.62ms    29.15ms   325.47ms
+  HTTP codes:
+    1xx - 0, 2xx - 41, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   138.81KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfmake?size=large&font=Helvetica for 20s using 1 connection(s)
+[=============================================================================================================================================================================================================] 20s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         0.45       4.67      50.37
+  Latency         2.21s   153.05ms      2.60s
+  HTTP codes:
+    1xx - 0, 2xx - 10, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   145.64KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfmake?size=small-table&font=Helvetica for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec        54.74      20.94     104.95
+  Latency       18.25ms    12.59ms   113.22ms
+  HTTP codes:
+    1xx - 0, 2xx - 548, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   193.12KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfmake?size=medium-table&font=Helvetica for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec        15.46      19.19      52.80
+  Latency       64.49ms    20.47ms   151.19ms
+  HTTP codes:
+    1xx - 0, 2xx - 156, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   188.22KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/pdfmake?size=large-table&font=Helvetica for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         1.71       8.97      52.63
+  Latency      588.67ms    51.65ms   680.43ms
+  HTTP codes:
+    1xx - 0, 2xx - 17, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   168.48KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/reactpdf?size=small for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         8.51      17.04      51.98
+  Latency      116.34ms    79.37ms   775.47ms
+  HTTP codes:
+    1xx - 0, 2xx - 86, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   162.30KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/reactpdf?size=medium for 20s using 1 connection(s)
+[=============================================================================================================================================================================================================] 20s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         1.15       7.40      52.06
+  Latency      838.16ms    96.87ms      1.06s
+  HTTP codes:
+    1xx - 0, 2xx - 24, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    37.21KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/reactpdf?size=large for 1m0s using 1 connection(s)
+[============================================================================================================================================================================================================] 1m0s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         0.07       1.79      49.65
+  Latency        13.91s      2.56s     18.61s
+  HTTP codes:
+    1xx - 0, 2xx - 5, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    11.12KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/reactpdf?size=small-table for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         5.22      14.50      52.31
+  Latency      191.49ms    28.25ms   309.52ms
+  HTTP codes:
+    1xx - 0, 2xx - 53, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   118.41KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/reactpdf?size=medium-table for 20s using 1 connection(s)
+[=============================================================================================================================================================================================================] 20s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         0.71       5.87      52.18
+  Latency         1.34s    77.10ms      1.49s
+  HTTP codes:
+    1xx - 0, 2xx - 15, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    29.69KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/reactpdf?size=large-table for 1m0s using 1 connection(s)
+[============================================================================================================================================================================================================] 1m0s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         0.03       1.30      51.15
+  Latency        25.83s   596.60ms     26.60s
+  HTTP codes:
+    1xx - 0, 2xx - 3, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:     7.92KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/reactpdf?size=small&font=Helvetica for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec        16.83      19.24      52.47
+  Latency       59.24ms    10.16ms   133.92ms
+  HTTP codes:
+    1xx - 0, 2xx - 169, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    69.72KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/reactpdf?size=medium&font=Helvetica for 20s using 1 connection(s)
+[=============================================================================================================================================================================================================] 20s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         1.30       7.82      51.80
+  Latency      751.58ms   185.57ms      1.58s
+  HTTP codes:
+    1xx - 0, 2xx - 27, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    20.39KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/reactpdf?size=large&font=Helvetica for 1m0s using 1 connection(s)
+[============================================================================================================================================================================================================] 1m0s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         0.08       2.03      51.36
+  Latency        11.41s   757.32ms     12.62s
+  HTTP codes:
+    1xx - 0, 2xx - 6, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    11.19KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/reactpdf?size=small-table&font=Helvetica for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         5.85      15.08      51.96
+  Latency      169.92ms    31.28ms   317.71ms
+  HTTP codes:
+    1xx - 0, 2xx - 59, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    25.97KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/reactpdf?size=medium-table&font=Helvetica for 20s using 1 connection(s)
+[=============================================================================================================================================================================================================] 20s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         0.70       5.86      51.68
+  Latency         1.43s   296.07ms      2.46s
+  HTTP codes:
+    1xx - 0, 2xx - 15, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    12.81KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/reactpdf?size=large-table&font=Helvetica for 1m0s using 1 connection(s)
+[============================================================================================================================================================================================================] 1m0s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         0.03       1.30      50.94
+  Latency        25.30s      1.10s     26.85s
+  HTTP codes:
+    1xx - 0, 2xx - 3, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:     6.09KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/puppeteer?size=small for 20s using 1 connection(s)
+[=============================================================================================================================================================================================================] 20s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         0.50       4.95      52.13
+  Latency         1.84s   202.34ms      2.43s
+  HTTP codes:
+    1xx - 0, 2xx - 11, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:     8.16KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/puppeteer?size=medium for 20s using 1 connection(s)
+[=============================================================================================================================================================================================================] 20s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         0.51       5.04      52.01
+  Latency         1.85s    80.09ms      2.01s
+  HTTP codes:
+    1xx - 0, 2xx - 11, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    24.39KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/puppeteer?size=large for 20s using 1 connection(s)
+[=============================================================================================================================================================================================================] 20s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         0.35       4.17      52.24
+  Latency         2.53s    71.81ms      2.60s
+  HTTP codes:
+    1xx - 0, 2xx - 8, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   139.56KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/puppeteer?size=small-table for 20s using 1 connection(s)
+[=============================================================================================================================================================================================================] 20s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         0.55       5.17      51.73
+  Latency         1.78s   102.53ms      1.92s
+  HTTP codes:
+    1xx - 0, 2xx - 12, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    18.74KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/puppeteer?size=medium-table for 20s using 1 connection(s)
+[=============================================================================================================================================================================================================] 20s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         0.50       4.96      52.48
+  Latency         1.95s   179.87ms      2.35s
+  HTTP codes:
+    1xx - 0, 2xx - 11, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    93.93KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/puppeteer?size=large-table for 20s using 1 connection(s)
+[=============================================================================================================================================================================================================] 20s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         0.25       3.48      50.90
+  Latency         3.44s    84.16ms      3.56s
+  HTTP codes:
+    1xx - 0, 2xx - 6, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   498.23KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/wkhtmltopdf?size=small for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         3.42      12.19      52.39
+  Latency      290.76ms    57.69ms   626.41ms
+  HTTP codes:
+    1xx - 0, 2xx - 35, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    35.10KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/wkhtmltopdf?size=medium for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         2.92      11.35      52.17
+  Latency      336.31ms     5.93ms   345.60ms
+  HTTP codes:
+    1xx - 0, 2xx - 30, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    83.43KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/wkhtmltopdf?size=large for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         1.00       6.89      50.82
+  Latency         0.93s    33.69ms      0.97s
+  HTTP codes:
+    1xx - 0, 2xx - 11, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   223.42KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/wkhtmltopdf?size=small-table for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         3.48      12.22      51.41
+  Latency      283.49ms     4.60ms   290.62ms
+  HTTP codes:
+    1xx - 0, 2xx - 36, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    43.40KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/wkhtmltopdf?size=medium-table for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         2.99      11.48      51.83
+  Latency      329.02ms     6.68ms   347.60ms
+  HTTP codes:
+    1xx - 0, 2xx - 31, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:    71.53KB/s
+
+Bombarding http://pdf.1rps.club:3000/pdf/wkhtmltopdf?size=large-table for 10s using 1 connection(s)
+[=============================================================================================================================================================================================================] 10s
+Done!
+Statistics        Avg      Stdev        Max
+  Reqs/sec         1.00       6.89      52.10
+  Latency         0.94s    27.86ms      0.97s
+  HTTP codes:
+    1xx - 0, 2xx - 11, 3xx - 0, 4xx - 0, 5xx - 0
+    others - 0
+  Throughput:   154.22KB/s
+
+
+
+Avg RPS:
+/pdf/pdfkit?size=small 13.07
+/pdf/pdfkit?size=medium 8.69
+/pdf/pdfkit?size=large 2.21
+/pdf/pdfkit?size=small-table 2.80
+/pdf/pdfkit?size=medium-table 0.45
+/pdf/pdfkit?size=large-table 0.03
+/pdf/pdfkit?size=small&font=Helvetica 64.02
+/pdf/pdfkit?size=medium&font=Helvetica 14.66
+/pdf/pdfkit?size=large&font=Helvetica 1.77
+/pdf/pdfkit?size=small-table&font=Helvetica 58.74
+/pdf/pdfkit?size=medium-table&font=Helvetica 15.50
+/pdf/pdfkit?size=large-table&font=Helvetica 1.80
+/pdf/pdfmake?size=small 9.31
+/pdf/pdfmake?size=medium 3.84
+/pdf/pdfmake?size=large 0.60
+/pdf/pdfmake?size=small-table 11.96
+/pdf/pdfmake?size=medium-table 7.28
+/pdf/pdfmake?size=large-table 1.49
+/pdf/pdfmake?size=small&font=Helvetica 26.96
+/pdf/pdfmake?size=medium&font=Helvetica 4.03
+/pdf/pdfmake?size=large&font=Helvetica 0.45
+/pdf/pdfmake?size=small-table&font=Helvetica 54.74
+/pdf/pdfmake?size=medium-table&font=Helvetica 15.46
+/pdf/pdfmake?size=large-table&font=Helvetica 1.71
+/pdf/reactpdf?size=small 8.51
+/pdf/reactpdf?size=medium 1.15
+/pdf/reactpdf?size=large 0.07
+/pdf/reactpdf?size=small-table 5.22
+/pdf/reactpdf?size=medium-table 0.71
+/pdf/reactpdf?size=large-table 0.03
+/pdf/reactpdf?size=small&font=Helvetica 16.83
+/pdf/reactpdf?size=medium&font=Helvetica 1.30
+/pdf/reactpdf?size=large&font=Helvetica 0.08
+/pdf/reactpdf?size=small-table&font=Helvetica 5.85
+/pdf/reactpdf?size=medium-table&font=Helvetica 0.70
+/pdf/reactpdf?size=large-table&font=Helvetica 0.03
+/pdf/puppeteer?size=small 0.50
+/pdf/puppeteer?size=medium 0.51
+/pdf/puppeteer?size=large 0.35
+/pdf/puppeteer?size=small-table 0.55
+/pdf/puppeteer?size=medium-table 0.50
+/pdf/puppeteer?size=large-table 0.25
+/pdf/wkhtmltopdf?size=small 3.42
+/pdf/wkhtmltopdf?size=medium 2.92
+/pdf/wkhtmltopdf?size=large 1.00
+/pdf/wkhtmltopdf?size=small-table 3.48
+/pdf/wkhtmltopdf?size=medium-table 2.99
+/pdf/wkhtmltopdf?size=large-table 1.00
