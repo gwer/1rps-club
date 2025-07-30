@@ -32,6 +32,8 @@
 	--text-color-link-active: #92400e;
 	--text-color-link-visited: #78350f;
 
+	--border-color: var(--color-gray-50);
+
 	--syntax-tab-size: 2;
 }
 
@@ -41,12 +43,14 @@
 		--color-gray-50: #a8a29e;
 		--color-gray-90: #e7e5e4;
 
+		--background-color: #292524;
+
 		/* --text-color is assigned to --color-gray-_ above */
 		--text-color-link: #e4c580;
 		--text-color-link-active: #f2d49c;
 		--text-color-link-visited: #c4a373;
 
-		--background-color: #292524;
+		--border-color: var(--color-gray-20);
 	}
 }
 
@@ -73,7 +77,7 @@ html {
 body {
 	display: flex;
 	flex-direction: column;
-	max-width: 40em;
+	max-width: 50em;
 	min-height: 100vh;
 }
 
@@ -276,6 +280,15 @@ header {
 	font-weight: bold;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-top: 2em;
+}
+
 /* Tags */
 .post-tag {
 	display: inline-flex;
@@ -305,11 +318,20 @@ header {
 /* Benchmark */
 .benchmark {
 	margin: 2rem 0;
+	border: 1px solid var(--border-color);
+	border-radius: 1rem;
+	padding: 1rem;
+}
+
+@media (min-width: 768px) {
+	.benchmark {
+		margin: 2rem -1rem;
+	}
 }
 
 .benchmark__row {
 	display: grid;
-	grid-template-columns: 100px 1fr 60px 30px;
+	grid-template-columns: 100px 1fr 60px;
 	gap: 1rem;
 	align-items: center;
 	/* Animation*/
@@ -333,6 +355,12 @@ header {
 .benchmark__row:nth-child(6) {
 	animation-delay: 0.5s;
 }
+.benchmark__row:nth-child(7) {
+	animation-delay: 0.6s;
+}
+.benchmark__row:nth-child(8) {
+	animation-delay: 0.7s;
+}
 
 .benchmark__library-name {
 	width: 100px;
@@ -343,7 +371,6 @@ header {
 	flex: 1;
 	height: 24px;
 	overflow: hidden;
-	margin: 0 1rem;
 	background: #8883;
 	border-radius: 4px;
 	position: relative;
@@ -628,9 +655,9 @@ pre[class*="language-diff-"] {
 	<li><a href="/tags/benchmark/" class="post-tag">benchmark</a></li>
 </ul>
 
-<h2 id="server-side-rendering-speed-react-vs-preact">Server-Side Rendering Speed: React vs Preact</h2>
 <p>React is a popular library for building user interfaces. You can love it or hate it, but it has already claimed its place and is here to stay. While it may be great for complex SPAs, it can also be quite useful as a modular templating engine, allowing you to add interactivity to websites when needed.</p>
 <p>But how efficient is it? To find out, let's compare it with Preact — the closest analog that can, with some reservations, be considered a drop-in replacement for React.</p>
+<h2 id="server-side-rendering-speed-react-vs-preact">Server-Side Rendering Speed: React vs Preact</h2>
 <p>The first thing I want to examine is rendering speed. To be precise, this is the speed of transforming our JS code into an HTML string to serve to the client. This characteristic helps determine how much money you'll need to spend on servers or how much traffic a single server can handle.</p>
 <h3 id="performance-benchmarks">Performance Benchmarks</h3>
 <div class="benchmark"><h4 id="render-simple-component-ops-sec">Render simple component (ops/sec)</h4>
@@ -800,6 +827,8 @@ pre[class*="language-diff-"] {
 <p>For everything else, especially if performance matters, Preact is worth considering.</p>
 <p><strong>Want to see it in action?</strong> Watch <a href="https://www.youtube.com/watch?v=WTZjanKopsY">React Is Killing Your App Speed. Fix It in 5 Minutes.</a> for step-by-step migration from React to Preact with real web application, client hydration, and load testing.</p>
 
+<ul class="links-nextprev"><li class="links-nextprev-next">Next →<br><a href="/blog/pdf-generators-benchmark-comparison/">PDF Generators Comparison and Benchmark: PDFKit, PDFMake, React-PDF, Puppeteer &amp; wkhtmltopdf</a></li>
+</ul>
 
 			</heading-anchors>
 		</main>
@@ -810,7 +839,7 @@ pre[class*="language-diff-"] {
 			</p>
 		</footer>
 
-		<!-- This page `/blog/react-preact-performance-benchmark-2025/` was built on 2025-07-19T13:39:24.163Z -->
+		<!-- This page `/blog/react-preact-performance-benchmark-2025/` was built on 2025-07-30T17:45:54.901Z -->
 		<script type="module" src="/dist/8ZfCXxRxEq.js"></script>
 	</body>
 </html>

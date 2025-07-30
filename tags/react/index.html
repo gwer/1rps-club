@@ -32,6 +32,8 @@
 	--text-color-link-active: #92400e;
 	--text-color-link-visited: #78350f;
 
+	--border-color: var(--color-gray-50);
+
 	--syntax-tab-size: 2;
 }
 
@@ -41,12 +43,14 @@
 		--color-gray-50: #a8a29e;
 		--color-gray-90: #e7e5e4;
 
+		--background-color: #292524;
+
 		/* --text-color is assigned to --color-gray-_ above */
 		--text-color-link: #e4c580;
 		--text-color-link-active: #f2d49c;
 		--text-color-link-visited: #c4a373;
 
-		--background-color: #292524;
+		--border-color: var(--color-gray-20);
 	}
 }
 
@@ -73,7 +77,7 @@ html {
 body {
 	display: flex;
 	flex-direction: column;
-	max-width: 40em;
+	max-width: 50em;
 	min-height: 100vh;
 }
 
@@ -276,6 +280,15 @@ header {
 	font-weight: bold;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-top: 2em;
+}
+
 /* Tags */
 .post-tag {
 	display: inline-flex;
@@ -305,11 +318,20 @@ header {
 /* Benchmark */
 .benchmark {
 	margin: 2rem 0;
+	border: 1px solid var(--border-color);
+	border-radius: 1rem;
+	padding: 1rem;
+}
+
+@media (min-width: 768px) {
+	.benchmark {
+		margin: 2rem -1rem;
+	}
 }
 
 .benchmark__row {
 	display: grid;
-	grid-template-columns: 100px 1fr 60px 30px;
+	grid-template-columns: 100px 1fr 60px;
 	gap: 1rem;
 	align-items: center;
 	/* Animation*/
@@ -333,6 +355,12 @@ header {
 .benchmark__row:nth-child(6) {
 	animation-delay: 0.5s;
 }
+.benchmark__row:nth-child(7) {
+	animation-delay: 0.6s;
+}
+.benchmark__row:nth-child(8) {
+	animation-delay: 0.7s;
+}
 
 .benchmark__library-name {
 	width: 100px;
@@ -343,7 +371,6 @@ header {
 	flex: 1;
 	height: 24px;
 	overflow: hidden;
-	margin: 0 1rem;
 	background: #8883;
 	border-radius: 4px;
 	position: relative;
@@ -472,7 +499,7 @@ header {
 			</p>
 		</footer>
 
-		<!-- This page `/tags/react/` was built on 2025-07-19T13:39:24.162Z -->
+		<!-- This page `/tags/react/` was built on 2025-07-30T17:45:54.948Z -->
 		<script type="module" src="/dist/8ZfCXxRxEq.js"></script>
 	</body>
 </html>

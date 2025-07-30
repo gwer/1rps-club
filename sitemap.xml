@@ -8,21 +8,26 @@
 	
 	<url>
 		<loc>https://1rps.club/about/</loc>
-		<lastmod>2025-07-19</lastmod>
+		<lastmod>2025-07-30</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://1rps.club/</loc>
-		<lastmod>2025-07-19</lastmod>
+		<lastmod>2025-07-30</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://1rps.club/tags/</loc>
-		<lastmod>2025-07-19</lastmod>
+		<lastmod>2025-07-30</lastmod>
 	</url>
 	
 	<url>
 		<loc>https://1rps.club/feed/feed.xml</loc>
-		<lastmod>2025-07-19</lastmod>
+		<lastmod>2025-07-30</lastmod>
+	</url>
+	
+	<url>
+		<loc>https://1rps.club/blog/pdf-generators-benchmark-comparison/</loc>
+		<lastmod>2025-07-31</lastmod>
 	</url>
 </urlset>

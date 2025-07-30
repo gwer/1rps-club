@@ -1,0 +1,1468 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>PDF Generators Comparison and Benchmark: PDFKit, PDFMake, React-PDF, Puppeteer &amp; wkhtmltopdf</title>
+		<meta name="description" content="A comparison of the best PDF generators for 2025">
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="1RPS.club">
+		
+		
+		
+		<style>/* This is an arbitrary CSS string added to the bundle */
+/* Defaults */
+:root {
+	--font-family: -apple-system, system-ui, sans-serif;
+	--font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono,
+		Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono,
+		Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New,
+		Courier, monospace;
+}
+
+/* Theme colors */
+:root {
+	--color-gray-20: #f5f5f4;
+	--color-gray-50: #a8a29e;
+	--color-gray-90: #44403c;
+
+	--background-color: #fff6ee;
+
+	--text-color: var(--color-gray-90);
+	--text-color-link: #b45309;
+	--text-color-link-active: #92400e;
+	--text-color-link-visited: #78350f;
+
+	--border-color: var(--color-gray-50);
+
+	--syntax-tab-size: 2;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-gray-20: #57534e;
+		--color-gray-50: #a8a29e;
+		--color-gray-90: #e7e5e4;
+
+		--background-color: #292524;
+
+		/* --text-color is assigned to --color-gray-_ above */
+		--text-color-link: #e4c580;
+		--text-color-link-active: #f2d49c;
+		--text-color-link-visited: #c4a373;
+
+		--border-color: var(--color-gray-20);
+	}
+}
+
+/* Global stylesheet */
+* {
+	box-sizing: border-box;
+}
+
+@view-transition {
+	navigation: auto;
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0 auto;
+	font-family: var(--font-family);
+	color: var(--text-color);
+	background-color: var(--background-color);
+}
+html {
+	overflow-y: scroll;
+}
+body {
+	display: flex;
+	flex-direction: column;
+	max-width: 50em;
+	min-height: 100vh;
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden:not(:focus):not(:active) {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+/* Fluid images via https://www.zachleat.com/web/fluid-images/ */
+img {
+	max-width: 100%;
+}
+img[width][height] {
+	height: auto;
+}
+img[src$='.svg'] {
+	width: 100%;
+	height: auto;
+	max-width: none;
+}
+video,
+iframe {
+	width: 100%;
+	height: auto;
+}
+iframe {
+	aspect-ratio: 16/9;
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+p {
+	line-height: 1.5;
+}
+
+li {
+	line-height: 1.5;
+}
+
+a[href] {
+	color: var(--text-color-link);
+}
+a[href]:visited {
+	color: var(--text-color-link-visited);
+}
+a[href]:hover,
+a[href]:active {
+	color: var(--text-color-link-active);
+}
+
+main {
+	flex-grow: 1;
+}
+main,
+footer {
+	padding: 1rem;
+}
+main :first-child {
+	margin-top: 0;
+}
+
+header {
+	border-bottom: 1px dashed var(--color-gray-20);
+}
+
+#skip-link {
+	text-decoration: none;
+	background: var(--background-color);
+	color: var(--text-color);
+	padding: 0.5rem 1rem;
+	border: 1px solid var(--color-gray-90);
+	border-radius: 2px;
+}
+
+/* Prevent visually-hidden skip link fom pushing content around when focused */
+#skip-link.visually-hidden:focus {
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+	/* Ensure it is positioned on top of everything else when it is shown */
+	z-index: 999;
+}
+
+.links-nextprev {
+	display: flex;
+	justify-content: space-between;
+	gap: 0.5em 1em;
+	list-style: '';
+	border-top: 1px dashed var(--color-gray-20);
+	padding: 1em 0;
+}
+.links-nextprev > * {
+	flex-grow: 1;
+}
+.links-nextprev-next {
+	text-align: right;
+}
+
+table {
+	margin: 1em 0;
+}
+table td,
+table th {
+	padding-right: 1em;
+}
+
+pre,
+code {
+	font-family: var(--font-family-monospace);
+}
+pre:not([class*='language-']) {
+	margin: 0.5em 0;
+	line-height: 1.375; /* 22px /16 */
+	-moz-tab-size: var(--syntax-tab-size);
+	-o-tab-size: var(--syntax-tab-size);
+	tab-size: var(--syntax-tab-size);
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	overflow-x: auto;
+}
+code {
+	word-break: break-all;
+}
+
+/* Header */
+header {
+	display: flex;
+	gap: 1em;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1em;
+}
+.home-link {
+	flex-grow: 1;
+	font-size: 1em; /* 16px /16 */
+	font-weight: 700;
+}
+.home-link:link:not(:hover) {
+	text-decoration: none;
+}
+
+/* Nav */
+.nav {
+	display: flex;
+	gap: 0.5em 1em;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.nav-item {
+	display: inline-block;
+}
+.nav-item a[href]:not(:hover) {
+	text-decoration: none;
+}
+.nav a[href][aria-current='page'] {
+	text-decoration: underline;
+}
+
+/* Posts list */
+.postlist {
+	padding: 0;
+}
+.postlist-item {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	margin-bottom: 1em;
+}
+.postlist-date {
+	font-size: 0.8125em; /* 13px /16 */
+	color: var(--color-gray-90);
+}
+.postlist-date {
+	word-spacing: -0.5px;
+}
+.postlist-link {
+	font-size: 1.1875em; /* 19px /16 */
+	font-weight: 700;
+	flex-basis: calc(100% - 1.5rem);
+	text-underline-position: from-font;
+	text-underline-offset: 0;
+	text-decoration-thickness: 1px;
+}
+.postlist-item-active .postlist-link {
+	font-weight: bold;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-top: 2em;
+}
+
+/* Tags */
+.post-tag {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: capitalize;
+	font-style: italic;
+}
+.postlist-item > .post-tag {
+	align-self: center;
+}
+
+/* Tags list */
+.post-metadata {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 1em;
+}
+.post-metadata time {
+	margin-right: 1em;
+}
+
+/* Benchmark */
+.benchmark {
+	margin: 2rem 0;
+	border: 1px solid var(--border-color);
+	border-radius: 1rem;
+	padding: 1rem;
+}
+
+@media (min-width: 768px) {
+	.benchmark {
+		margin: 2rem -1rem;
+	}
+}
+
+.benchmark__row {
+	display: grid;
+	grid-template-columns: 100px 1fr 60px;
+	gap: 1rem;
+	align-items: center;
+	/* Animation*/
+	opacity: 0;
+	transform: translateX(-20px);
+	animation: slideInLeft 0.6s ease forwards;
+}
+
+.benchmark__row:nth-child(2) {
+	animation-delay: 0.1s;
+}
+.benchmark__row:nth-child(3) {
+	animation-delay: 0.2s;
+}
+.benchmark__row:nth-child(4) {
+	animation-delay: 0.3s;
+}
+.benchmark__row:nth-child(5) {
+	animation-delay: 0.4s;
+}
+.benchmark__row:nth-child(6) {
+	animation-delay: 0.5s;
+}
+.benchmark__row:nth-child(7) {
+	animation-delay: 0.6s;
+}
+.benchmark__row:nth-child(8) {
+	animation-delay: 0.7s;
+}
+
+.benchmark__library-name {
+	width: 100px;
+	font-weight: 500;
+}
+
+.benchmark__progress-container {
+	flex: 1;
+	height: 24px;
+	overflow: hidden;
+	background: #8883;
+	border-radius: 4px;
+	position: relative;
+}
+
+.benchmark__progress-bar {
+	height: 100%;
+	width: var(--width);
+	background: linear-gradient(90deg, #3b82f6 0%, #5c4fd4 100%);
+	border-radius: 4px;
+	transition: width 0.8s ease;
+	position: relative;
+	overflow: hidden;
+	/* Animation*/
+	animation: fillProgress 1.2s ease-out forwards;
+	animation-delay: calc(var(--delay, 0) * 0.1s + 0.3s);
+	width: 0;
+}
+
+.benchmark__progress-bar::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 255, 255, 0.1),
+		transparent
+	);
+	animation: shimmer 2s ease-in-out infinite;
+	animation-delay: calc(var(--delay, 0) * 0.1s + 1.5s);
+}
+
+.benchmark__value-display {
+	font-size: 12px;
+	font-weight: 500;
+	text-align: right;
+	/* Animation*/
+	opacity: 0;
+	animation: fadeIn 0.4s ease forwards;
+	animation-delay: calc(var(--delay, 0) * 0.1s + 1s);
+}
+
+/* Animations */
+@keyframes slideInLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes fillProgress {
+	from {
+		width: 0;
+	}
+	to {
+		width: var(--width);
+	}
+}
+
+@keyframes shimmer {
+	0% {
+		left: -100%;
+	}
+	100% {
+		left: 100%;
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #8292a2;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+/*
+ * New diff- syntax
+ */
+
+pre[class*="language-diff-"] {
+	--eleventy-code-padding: 1.25em;
+	padding-left: var(--eleventy-code-padding);
+	padding-right: var(--eleventy-code-padding);
+}
+.token.deleted {
+	background-color: hsl(0, 51%, 37%);
+	color: inherit;
+}
+.token.inserted {
+	background-color: hsl(126, 31%, 39%);
+	color: inherit;
+}
+
+/* Make the + and - characters unselectable for copy/paste */
+.token.prefix.unchanged,
+.token.prefix.inserted,
+.token.prefix.deleted {
+	-webkit-user-select: none;
+	user-select: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.token.prefix.inserted,
+.token.prefix.deleted {
+	width: var(--eleventy-code-padding);
+	background-color: rgba(0,0,0,.2);
+}
+
+/* Optional: full-width background color */
+.token.inserted:not(.prefix),
+.token.deleted:not(.prefix) {
+	display: block;
+	margin-left: calc(-1 * var(--eleventy-code-padding));
+	margin-right: calc(-1 * var(--eleventy-code-padding));
+	text-decoration: none; /* override del, ins, mark defaults */
+	color: inherit; /* override del, ins, mark defaults */
+}</style>
+		
+		
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header>
+			<a href="/" class="home-link">1RPS.club</a>
+			<nav>
+				<h2 class="visually-hidden" id="top-level-navigation-menu">Top level navigation menu</h2>
+				<ul class="nav">
+					<li class="nav-item"><a href="/">Home</a></li>
+					<li class="nav-item"><a href="/about/">About</a></li>
+					<li class="nav-item"><a href="/feed/feed.xml">Feed</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main id="main">
+			<heading-anchors>
+				
+
+
+<h1 id="pdf-generators-comparison-and-benchmark-pdfkit-pdfmake-react-pdf-puppeteer-and-wkhtmltopdf">PDF Generators Comparison and Benchmark: PDFKit, PDFMake, React-PDF, Puppeteer &amp; wkhtmltopdf</h1>
+
+<ul class="post-metadata">
+	<li><time datetime="2025-07-31">31 July 2025</time></li>
+	<li><a href="/tags/pdf/" class="post-tag">pdf</a>, </li>
+	<li><a href="/tags/benchmark/" class="post-tag">benchmark</a></li>
+</ul>
+
+<p>When you need to generate PDFs programmatically, the choice of library can dramatically impact your application's performance and server costs. With multiple solutions available — from lightweight libraries like PDFKit to browser-based approaches like Puppeteer — the performance difference between them can be overwhelming.</p>
+<p>To find out which PDF generator is better, I benchmarked 5 popular solutions across different document sizes and scenarios. The results reveal performance gaps of up to <strong>130x</strong> between the fastest and slowest options, with file sizes varying by up to <strong>18x</strong>.</p>
+<h2 id="tl-dr-recommendations">TL;DR: Recommendations</h2>
+<ul>
+<li><strong>High performance + small files</strong>: PDFKit with standard fonts</li>
+<li><strong>Best balance of performance + convenience</strong>: PDFMake</li>
+<li><strong>HTML/CSS rendering needed</strong>: Wkhtmltopdf (or Puppeteer if you need support for modern CSS)</li>
+</ul>
+<h2 id="solutions-under-test">Solutions Under Test</h2>
+<p><strong>JavaScript PDF Libraries:</strong></p>
+<ul>
+<li><strong>PDFKit</strong> - Low-level PDF generation library.</li>
+<li><strong>PDFMake</strong> - High-level declarative PDF creation over PDFKit</li>
+<li><strong>React-PDF</strong> - Component-based PDF generation with React</li>
+</ul>
+<p><strong>Browser-Based Solutions:</strong></p>
+<ul>
+<li><strong>Puppeteer</strong> - Headless Chrome API</li>
+<li><strong>wkhtmltopdf</strong> - Qt WebKit based PDF renderer</li>
+</ul>
+<h2 id="font-impact-base-14-vs-custom-fonts">Font Impact: Base 14 vs Custom Fonts</h2>
+<p>A crucial factor in PDF generation performance is font handling. The PDF standard defines <strong>Base 14 fonts</strong> (also known as Standard 14 fonts) — a set of fonts that must be available in every PDF viewer without embedding. These include Helvetica, Times-Roman, Courier, and Symbol fonts. When using Base 14 fonts, libraries can avoid font embedding entirely, resulting in smaller files and faster generation.</p>
+<p><strong>⚠️ Unicode/Internationalization Caveat:</strong> Standard fonts have limited character set support. While excellent for English and basic Latin scripts, they may not support Cyrillic, Chinese, Arabic, or many special characters.</p>
+<p>Each library was tested with both scenarios:</p>
+<ul>
+<li><strong>Custom fonts (Roboto)</strong> - Requires font embedding, larger files, slower generation</li>
+<li><strong>Standard fonts (Helvetica)</strong> - No embedding needed, smaller files, faster generation</li>
+</ul>
+<h2 id="document-complexity">Document Complexity</h2>
+<p>Documents were generated with text content and tables across three complexity levels: small (10 elements), medium (100 elements), and large (1000 elements).</p>
+<h2 id="benchmark-environment">Benchmark Environment</h2>
+<p><strong>Hardware:</strong></p>
+<ul>
+<li>Digital Ocean Droplet (1 CPU, 2GB RAM)</li>
+</ul>
+<p><strong>Software:</strong></p>
+<ul>
+<li>Node.js v24.4.1</li>
+<li>PDFKit v0.17.1</li>
+<li>PDFMake v0.2.20</li>
+<li>React-PDF v4.3.0</li>
+<li>Puppeteer v24.15.0</li>
+<li>wkhtmltopdf v0.4.0</li>
+</ul>
+<p><strong>Test Methodology:</strong></p>
+<ul>
+<li>Load testing: Bombardier with 1 concurrent connection</li>
+</ul>
+<p><a href="https://github.com/gwer/1rps-club/tree/main/content/blog/pdf-generators-benchmark-comparison/_benchmark/">Benchmark code</a></p>
+<h2 id="server-performance-requests-per-second">Server Performance: Requests Per Second</h2>
+<p>The server performance test measures how many PDF generation requests each library can handle per second.</p>
+<h3 id="text-documents-performance">Text Documents Performance</h3>
+<div class="benchmark"><h4 id="small-documents-10-paragraphs-rps">Small documents (10 paragraphs) (RPS)</h4>
+				<div class="benchmark__row">
+					<span class="benchmark__library-name">PDFKit</span>
+					<div class="benchmark__progress-container">
+						<div class="benchmark__progress-bar" style="--width: 20.4154951577632%">
+						</div>
+					</div>
+					<span class="benchmark__value-display">13.07</span>
+				</div>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFKit (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 100%">
+</div>
+</div>
+<span class="benchmark__value-display">64.02</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 14.542330521711966%">
+</div>
+</div>
+<span class="benchmark__value-display">9.31</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 42.11184004998438%">
+</div>
+</div>
+<span class="benchmark__value-display">26.96</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 13.292721024679787%">
+</div>
+</div>
+<span class="benchmark__value-display">8.51</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 26.288659793814436%">
+</div>
+</div>
+<span class="benchmark__value-display">16.83</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">Puppeteer</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 0.7810059356451109%">
+</div>
+</div>
+<span class="benchmark__value-display">0.5</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">wkhtmltopdf</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 5.342080599812559%">
+</div>
+</div>
+<span class="benchmark__value-display">3.42</span>
+</div>
+</div><p></p>
+<div class="benchmark"><h4 id="medium-documents-100-paragraphs-rps">Medium documents (100 paragraphs) (RPS)</h4>
+				<div class="benchmark__row">
+					<span class="benchmark__library-name">PDFKit</span>
+					<div class="benchmark__progress-container">
+						<div class="benchmark__progress-bar" style="--width: 59.27694406548431%">
+						</div>
+					</div>
+					<span class="benchmark__value-display">8.69</span>
+				</div>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFKit (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 100%">
+</div>
+</div>
+<span class="benchmark__value-display">14.66</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 26.193724420190996%">
+</div>
+</div>
+<span class="benchmark__value-display">3.84</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 27.489768076398363%">
+</div>
+</div>
+<span class="benchmark__value-display">4.03</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 7.844474761255116%">
+</div>
+</div>
+<span class="benchmark__value-display">1.15</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 8.867667121418826%">
+</div>
+</div>
+<span class="benchmark__value-display">1.3</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">Puppeteer</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 3.4788540245566164%">
+</div>
+</div>
+<span class="benchmark__value-display">0.51</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">wkhtmltopdf</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 19.918144611186904%">
+</div>
+</div>
+<span class="benchmark__value-display">2.92</span>
+</div>
+</div><p></p>
+<div class="benchmark"><h4 id="large-documents-1000-paragraphs-rps">Large documents (1000 paragraphs) (RPS)</h4>
+				<div class="benchmark__row">
+					<span class="benchmark__library-name">PDFKit</span>
+					<div class="benchmark__progress-container">
+						<div class="benchmark__progress-bar" style="--width: 100%">
+						</div>
+					</div>
+					<span class="benchmark__value-display">2.21</span>
+				</div>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFKit (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 80.09049773755656%">
+</div>
+</div>
+<span class="benchmark__value-display">1.77</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 27.149321266968325%">
+</div>
+</div>
+<span class="benchmark__value-display">0.6</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 20.361990950226243%">
+</div>
+</div>
+<span class="benchmark__value-display">0.45</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 3.1674208144796387%">
+</div>
+</div>
+<span class="benchmark__value-display">0.07</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 3.619909502262444%">
+</div>
+</div>
+<span class="benchmark__value-display">0.08</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">Puppeteer</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 15.837104072398189%">
+</div>
+</div>
+<span class="benchmark__value-display">0.35</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">wkhtmltopdf</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 45.248868778280546%">
+</div>
+</div>
+<span class="benchmark__value-display">1</span>
+</div>
+</div><p></p>
+<h3 id="table-generation-performance">Table Generation Performance</h3>
+<p>Tables are particularly challenging for PDF generators, especially when they contain many rows.</p>
+<div class="benchmark"><h4 id="small-tables-10-rows-rps">Small tables (10 rows) (RPS)</h4>
+				<div class="benchmark__row">
+					<span class="benchmark__library-name">PDFKit</span>
+					<div class="benchmark__progress-container">
+						<div class="benchmark__progress-bar" style="--width: 4.766768811712631%">
+						</div>
+					</div>
+					<span class="benchmark__value-display">2.8</span>
+				</div>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFKit (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 100%">
+</div>
+</div>
+<span class="benchmark__value-display">58.74</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 20.360912495743957%">
+</div>
+</div>
+<span class="benchmark__value-display">11.96</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 93.19033026898195%">
+</div>
+</div>
+<span class="benchmark__value-display">54.74</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 8.886618998978548%">
+</div>
+</div>
+<span class="benchmark__value-display">5.22</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 9.959141981613891%">
+</div>
+</div>
+<span class="benchmark__value-display">5.85</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">Puppeteer</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 0.9363295880149813%">
+</div>
+</div>
+<span class="benchmark__value-display">0.55</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">wkhtmltopdf</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 5.9244126659857%">
+</div>
+</div>
+<span class="benchmark__value-display">3.48</span>
+</div>
+</div><p></p>
+<div class="benchmark"><h4 id="medium-tables-100-rows-rps">Medium tables (100 rows) (RPS)</h4>
+				<div class="benchmark__row">
+					<span class="benchmark__library-name">PDFKit</span>
+					<div class="benchmark__progress-container">
+						<div class="benchmark__progress-bar" style="--width: 2.903225806451613%">
+						</div>
+					</div>
+					<span class="benchmark__value-display">0.45</span>
+				</div>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFKit (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 100%">
+</div>
+</div>
+<span class="benchmark__value-display">15.5</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 46.96774193548387%">
+</div>
+</div>
+<span class="benchmark__value-display">7.28</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 99.74193548387098%">
+</div>
+</div>
+<span class="benchmark__value-display">15.46</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 4.580645161290323%">
+</div>
+</div>
+<span class="benchmark__value-display">0.71</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 4.516129032258064%">
+</div>
+</div>
+<span class="benchmark__value-display">0.7</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">Puppeteer</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 3.225806451612903%">
+</div>
+</div>
+<span class="benchmark__value-display">0.5</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">wkhtmltopdf</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 19.290322580645164%">
+</div>
+</div>
+<span class="benchmark__value-display">2.99</span>
+</div>
+</div><p></p>
+<div class="benchmark"><h4 id="large-tables-1000-rows-rps">Large tables (1000 rows) (RPS)</h4>
+				<div class="benchmark__row">
+					<span class="benchmark__library-name">PDFKit</span>
+					<div class="benchmark__progress-container">
+						<div class="benchmark__progress-bar" style="--width: 1.6666666666666667%">
+						</div>
+					</div>
+					<span class="benchmark__value-display">0.03</span>
+				</div>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFKit (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 100%">
+</div>
+</div>
+<span class="benchmark__value-display">1.8</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 82.77777777777777%">
+</div>
+</div>
+<span class="benchmark__value-display">1.49</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 95%">
+</div>
+</div>
+<span class="benchmark__value-display">1.71</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 1.6666666666666667%">
+</div>
+</div>
+<span class="benchmark__value-display">0.03</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 1.6666666666666667%">
+</div>
+</div>
+<span class="benchmark__value-display">0.03</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">Puppeteer</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 13.88888888888889%">
+</div>
+</div>
+<span class="benchmark__value-display">0.25</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">wkhtmltopdf</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 55.55555555555556%">
+</div>
+</div>
+<span class="benchmark__value-display">1</span>
+</div>
+</div><p></p>
+<h3 id="performance-analysis">Performance Analysis</h3>
+<ul>
+<li>PDFKit is the absolute champion.</li>
+<li>Using standard fonts is much better than using custom fonts, especially for small documents.</li>
+<li>React-PDF is acceptable only for small documents.</li>
+<li>PDFKit got its tables support recently and it works really slowly with custom fonts. But it's great with standard fonts.</li>
+<li>PDFMake has its own tables implementation and it's the best option.</li>
+<li>Puppeteer and wkhtmltopdf are not the fastest, but they have less speed decrease with growing document size.</li>
+</ul>
+<h2 id="file-size-comparison">File Size Comparison</h2>
+<p>Generated file sizes vary significantly between libraries and font choices, directly impacting bandwidth costs and download times.</p>
+<h3 id="text-document-file-sizes">Text Document File Sizes</h3>
+<div class="benchmark"><h4 id="small-documents-kb">Small documents (KB)</h4>
+				<div class="benchmark__row">
+					<span class="benchmark__library-name">PDFKit</span>
+					<div class="benchmark__progress-container">
+						<div class="benchmark__progress-bar" style="--width: 76.76767676767676%">
+						</div>
+					</div>
+					<span class="benchmark__value-display">15.2</span>
+				</div>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFKit (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 10.1010101010101%">
+</div>
+</div>
+<span class="benchmark__value-display">2</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 100%">
+</div>
+</div>
+<span class="benchmark__value-display">19.8</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 23.23232323232323%">
+</div>
+</div>
+<span class="benchmark__value-display">4.6</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 89.8989898989899%">
+</div>
+</div>
+<span class="benchmark__value-display">17.8</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 16.666666666666664%">
+</div>
+</div>
+<span class="benchmark__value-display">3.3</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">Puppeteer</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 74.24242424242424%">
+</div>
+</div>
+<span class="benchmark__value-display">14.7</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">wkhtmltopdf</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 50%">
+</div>
+</div>
+<span class="benchmark__value-display">9.9</span>
+</div>
+</div><p></p>
+<div class="benchmark"><h4 id="large-documents-kb">Large documents (KB)</h4>
+				<div class="benchmark__row">
+					<span class="benchmark__library-name">PDFKit</span>
+					<div class="benchmark__progress-container">
+						<div class="benchmark__progress-bar" style="--width: 30.909090909090907%">
+						</div>
+					</div>
+					<span class="benchmark__value-display">113.9</span>
+				</div>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFKit (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 27.19131614654003%">
+</div>
+</div>
+<span class="benchmark__value-display">100.2</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 100%">
+</div>
+</div>
+<span class="benchmark__value-display">368.5</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 85.29172320217097%">
+</div>
+</div>
+<span class="benchmark__value-display">314.3</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 39.13161465400271%">
+</div>
+</div>
+<span class="benchmark__value-display">144.2</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 31.886024423337854%">
+</div>
+</div>
+<span class="benchmark__value-display">117.5</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">Puppeteer</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 95.65807327001356%">
+</div>
+</div>
+<span class="benchmark__value-display">352.5</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">wkhtmltopdf</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 56.06512890094979%">
+</div>
+</div>
+<span class="benchmark__value-display">206.6</span>
+</div>
+</div><p></p>
+<h3 id="table-file-sizes">Table File Sizes</h3>
+<div class="benchmark"><h4 id="small-tables-kb">Small tables (KB)</h4>
+				<div class="benchmark__row">
+					<span class="benchmark__library-name">PDFKit</span>
+					<div class="benchmark__progress-container">
+						<div class="benchmark__progress-bar" style="--width: 54.54545454545454%">
+						</div>
+					</div>
+					<span class="benchmark__value-display">18</span>
+				</div>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFKit (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 8.181818181818182%">
+</div>
+</div>
+<span class="benchmark__value-display">2.7</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 60.303030303030305%">
+</div>
+</div>
+<span class="benchmark__value-display">19.9</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 8.484848484848484%">
+</div>
+</div>
+<span class="benchmark__value-display">2.8</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 65.75757575757576%">
+</div>
+</div>
+<span class="benchmark__value-display">21.7</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 11.212121212121213%">
+</div>
+</div>
+<span class="benchmark__value-display">3.7</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">Puppeteer</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 100%">
+</div>
+</div>
+<span class="benchmark__value-display">33</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">wkhtmltopdf</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 36.36363636363637%">
+</div>
+</div>
+<span class="benchmark__value-display">12</span>
+</div>
+</div><p></p>
+<div class="benchmark"><h4 id="large-tables-kb">Large tables (KB)</h4>
+				<div class="benchmark__row">
+					<span class="benchmark__library-name">PDFKit</span>
+					<div class="benchmark__progress-container">
+						<div class="benchmark__progress-bar" style="--width: 6.9695555814767305%">
+						</div>
+					</div>
+					<span class="benchmark__value-display">119.5</span>
+				</div>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFKit (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 5.843928613087601%">
+</div>
+</div>
+<span class="benchmark__value-display">100.2</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 7.406975387845562%">
+</div>
+</div>
+<span class="benchmark__value-display">127</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">PDFMake (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 5.6339671060305605%">
+</div>
+</div>
+<span class="benchmark__value-display">96.6</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 11.734515338854544%">
+</div>
+</div>
+<span class="benchmark__value-display">201.2</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">React-PDF (Helvetica)</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 8.800886504140907%">
+</div>
+</div>
+<span class="benchmark__value-display">150.9</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">Puppeteer</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 100%">
+</div>
+</div>
+<span class="benchmark__value-display">1,714.6</span>
+</div><p></p>
+<p></p><div class="benchmark__row">
+<span class="benchmark__library-name">wkhtmltopdf</span>
+<div class="benchmark__progress-container">
+<div class="benchmark__progress-bar" style="--width: 8.410124810451416%">
+</div>
+</div>
+<span class="benchmark__value-display">144.2</span>
+</div>
+</div><p></p>
+<h3 id="file-size-analysis">File Size Analysis</h3>
+<p>Using standard fonts (Helvetica) consistently produces smaller files. This is especially important for small documents. PDFKit generates 2KB files with Helvetica vs 15.2KB with Roboto for small documents — a <strong>7.6x difference</strong>. This occurs because standard fonts don't require embedding, while custom fonts like Roboto must include the full font data in the PDF.</p>
+<p>Puppeteer produces larger files, especially for complex tables (1.7MB vs ~100-200KB for other libraries).</p>
+<h2 id="conclusion">Conclusion</h2>
+<h3 id="pdfkit">PDFKit</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Fastest option overall</li>
+<li>Generates smallest file sizes</li>
+<li>Flexible enough for most use cases</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Low-level imperative API can be challenging for complex document preparation</li>
+<li>Performance issues with table generation when using custom fonts (may be fixed in future updates)</li>
+</ul>
+<p>PDFKit is ideal when you need maximum server performance and don't mind the setup complexity.</p>
+<hr>
+<h3 id="pdfmake">PDFMake</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Performance close to PDFKit</li>
+<li>Custom table implementation without performance issues</li>
+<li>More convenient declarative approach to document description</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>May lack flexibility for complex use cases</li>
+</ul>
+<p>PDFMake is perfect for efficiently generating relatively simple documents.</p>
+<hr>
+<h3 id="react-pdf">React-PDF</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Handles small text documents reasonably well</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Very slow on large documents</li>
+<li>Poor table handling (tables break across page boundaries)</li>
+<li>Occasionally crashes with <code>yoga-layout</code> errors</li>
+</ul>
+<p>React-PDF can currently only be used for generating simple and small text documents. No advantages over PDFMake were found.</p>
+<hr>
+<h3 id="puppeteer">Puppeteer</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Renders PDFs using browser engine — all you need is HTML + CSS</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Resource-intensive</li>
+<li>Relatively slow on limited hardware</li>
+<li>Sometimes generates excessively large files</li>
+</ul>
+<p>Puppeteer is suitable when you want convenient document generation for small volumes or have access to unlimited server resources.</p>
+<hr>
+<h3 id="wkhtmltopdf">wkhtmltopdf</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Like Puppeteer but faster and less resource-intensive</li>
+<li>Performance on large files comparable to PDFMake</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Based on outdated QtWebKit and doesn't support modern CSS features</li>
+</ul>
+<p>wkhtmltopdf works more efficiently than Puppeteer but requires developers to work with legacy CSS standards.</p>
+
+<ul class="links-nextprev"><li class="links-nextprev-prev">← Previous<br> <a href="/blog/react-preact-performance-benchmark-2025/">Preact vs React 2025: 20x Faster Server Performance, 22x Smaller Bundle</a></li>
+</ul>
+
+			</heading-anchors>
+		</main>
+
+		<footer>
+			<p>
+				<a href="https://github.com/gwer/1rps-club" target="_blank">GitHub</a>
+			</p>
+		</footer>
+
+		<!-- This page `/blog/pdf-generators-benchmark-comparison/` was built on 2025-07-30T17:45:54.900Z -->
+		<script type="module" src="/dist/8ZfCXxRxEq.js"></script>
+	</body>
+</html>
