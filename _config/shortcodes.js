@@ -19,8 +19,7 @@ export default function (eleventyConfig) {
 					<span class="benchmark__value-display">${Intl.NumberFormat().format(
 						value
 					)}</span>
-				</div>
-			`;
+				</div>`;
 		});
 
 		html += `</div>`;

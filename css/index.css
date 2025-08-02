@@ -318,6 +318,7 @@ h6 {
 }
 
 .benchmark__row {
+	height: 2.5em;
 	display: grid;
 	grid-template-columns: 100px 1fr 60px;
 	gap: 1rem;
