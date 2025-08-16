@@ -5,6 +5,8 @@ date: 2025-07-31
 tags: ['pdf', 'benchmark']
 ---
 
+{% youtube "https://www.youtube.com/watch?v=4RNnHDUXT7A" %}
+
 When you need to generate PDFs programmatically, the choice of library can dramatically impact your application's performance and server costs. With multiple solutions available — from lightweight libraries like PDFKit to browser-based approaches like Puppeteer — the performance difference between them can be overwhelming.
 
 To find out which PDF generator is better, I benchmarked 5 popular solutions across different document sizes and scenarios. The results reveal performance gaps of up to **130x** between the fastest and slowest options, with file sizes varying by up to **18x**.

@@ -31,4 +31,10 @@ export default function (eleventyConfig) {
 			text || path
 		}](https://github.com/gwer/1rps-club/tree/main/${path})`;
 	});
+
+	eleventyConfig.addShortcode('youtube', (videoURL, title) => {
+		const url = new URL(videoURL);
+		const id = url.searchParams.get('v');
+		return `<iframe class="yt-shortcode" src="https://www.youtube.com/embed/${id}" title="${title}" frameborder="0" allowfullscreen></iframe>`;
+	});
 }
