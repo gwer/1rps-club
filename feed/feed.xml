@@ -15,7 +15,8 @@
     <link href="https://1rps.club/blog/pdf-generators-benchmark-comparison/" />
     <updated>2025-07-31T00:00:00Z</updated>
     <id>https://1rps.club/blog/pdf-generators-benchmark-comparison/</id>
-    <content type="html">&lt;p&gt;When you need to generate PDFs programmatically, the choice of library can dramatically impact your application&#39;s performance and server costs. With multiple solutions available — from lightweight libraries like PDFKit to browser-based approaches like Puppeteer — the performance difference between them can be overwhelming.&lt;/p&gt;
+    <content type="html">&lt;iframe class=&quot;yt-shortcode&quot; src=&quot;https://www.youtube.com/embed/4RNnHDUXT7A&quot; title=&quot;undefined&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;When you need to generate PDFs programmatically, the choice of library can dramatically impact your application&#39;s performance and server costs. With multiple solutions available — from lightweight libraries like PDFKit to browser-based approaches like Puppeteer — the performance difference between them can be overwhelming.&lt;/p&gt;
 &lt;p&gt;To find out which PDF generator is better, I benchmarked 5 popular solutions across different document sizes and scenarios. The results reveal performance gaps of up to &lt;strong&gt;130x&lt;/strong&gt; between the fastest and slowest options, with file sizes varying by up to &lt;strong&gt;18x&lt;/strong&gt;.&lt;/p&gt;
 &lt;h2 id=&quot;tl-dr-recommendations&quot;&gt;TL;DR: Recommendations&lt;/h2&gt;
 &lt;ul&gt;
