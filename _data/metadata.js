@@ -1,4 +1,5 @@
 export default {
+	name: '1RPS.club',
 	title:
 		'1RPS.club — Personal Blog About Efficient Software and Performance Benchmarks',
 	url: 'https://1rps.club/',
